@@ -24,7 +24,7 @@
     const tags = ev.tags.map((t) => `<span style="--tag:${colors[t] || "#c98a2b"}">${escape(t)}</span>`).join("");
     return `
       <li class="event-item">
-        <a href="${base}events/reserve.html?event=${encodeURIComponent(ev.id)}">
+        <a href="${base}events/reserve.html#${encodeURIComponent(ev.id)}">
           <div class="event-thumb"><img src="${base}${escape(ev.image)}" alt="" loading="lazy"></div>
           <div class="event-body">
             <p class="event-date">${d.md}<small>（${d.dow}）</small></p>

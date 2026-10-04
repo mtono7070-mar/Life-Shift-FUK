@@ -1,7 +1,7 @@
-/* 予約ページ：URLの ?event=ID からイベント情報を表示し、フォームを制御します */
+/* 予約ページ：URLの #ID（または ?event=ID）からイベント情報を表示し、フォームを制御します */
 (function () {
   const events = window.LSF_EVENTS || [];
-  const id = new URLSearchParams(location.search).get("event");
+  const id = decodeURIComponent(location.hash.slice(1)) || new URLSearchParams(location.search).get("event");
   const ev = events.find((e) => e.id === id);
 
   const summary = document.querySelector("[data-event-summary]");
