@@ -1,6 +1,8 @@
 /* 予約ページ：URLの #ID（または ?event=ID）からイベント情報を表示し、フォームを制御します */
-(function () {
-  const events = window.LSF_EVENTS || [];
+document.addEventListener("lsf:content", (e) => {
+  const content = e.detail || {};
+  const events = content.events || [];
+  const { formatDate, src, tagHtml } = window.LSF;
   const id = decodeURIComponent(location.hash.slice(1)) || new URLSearchParams(location.search).get("event");
   const ev = events.find((e) => e.id === id);
 
@@ -15,15 +17,14 @@
     return;
   }
 
-  const d = window.formatEventDate(ev.date);
-  const colors = window.EVENT_TAG_COLORS || {};
+  const d = formatDate(ev.date);
   const set = (key, value) => {
     const el = summary.querySelector(`[data-field="${key}"]`);
     if (el) el.textContent = value;
   };
 
   document.title = `${ev.title}の予約｜Life Shift FUK`;
-  summary.querySelector("[data-field=image]").src = "../" + ev.image;
+  summary.querySelector("[data-field=image]").src = src(ev.image);
   set("date", d.full);
   set("title", ev.title);
   set("time", ev.time);
@@ -31,10 +32,7 @@
   set("fee", ev.fee);
   set("capacity", ev.capacity);
   set("description", ev.description);
-  summary.querySelector("[data-field=tags]").innerHTML = ev.tags
-    .map((t) => `<span style="--tag:${colors[t] || "#c98a2b"}"></span>`)
-    .join("");
-  summary.querySelectorAll("[data-field=tags] span").forEach((el, i) => (el.textContent = ev.tags[i]));
+  summary.querySelector("[data-field=tags]").innerHTML = tagHtml(ev.tags);
 
   const form = formWrap.querySelector("form");
   form.elements.event_id.value = ev.id;
@@ -80,4 +78,4 @@
   formWrap.querySelector("[data-send]").addEventListener("click", () => {
     show("done");
   });
-})();
+});

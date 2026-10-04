@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&family=Dancing+Script:wght@600;700&family=Allura&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("cms-loading");setTimeout(function(){document.documentElement.classList.remove("cms-loading")},2500);</script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="sub-page about-page">
@@ -35,11 +36,11 @@
         </ul>
       </nav>
       <div class="header-sns">
-        <a href="https://lin.ee/Sg5S7Pw" target="_blank" rel="noopener" class="btn-sns btn-line">
+        <a href="https://lin.ee/Sg5S7Pw" data-cms-href="settings.lineUrl" target="_blank" rel="noopener" class="btn-sns btn-line">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8.1-6C21.5 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8Zm-3.6 10.4H6.4c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.4h1.5c.3 0 .5.2.5.5s-.2.5-.5.5Zm2-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.9Zm4.6 0c0 .2-.1.4-.3.5h-.2c-.2 0-.3-.1-.4-.2l-2-2.8v2.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.2.1-.4.3-.5h.2c.2 0 .3.1.4.2l2 2.8V9c0-.3.2-.5.5-.5s.5.2.5.5v3.9Zm3.2-2.4c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.9h1.5c.3 0 .5.2.5.5s-.2.5-.5.5h-2c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5h2c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.9h1.5Z"/></svg>
           公式LINE
         </a>
-        <a href="https://www.instagram.com/life_shift_fukuoka/" target="_blank" rel="noopener" class="btn-sns btn-instagram">
+        <a href="https://www.instagram.com/life_shift_fukuoka/" data-cms-href="settings.instagramUrl" target="_blank" rel="noopener" class="btn-sns btn-instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
           Instagram
         </a>
@@ -63,13 +64,15 @@
     <!-- 想い -->
     <section class="page-section about-intro">
       <figure class="about-intro-photo">
-        <img src="assets/images/about-community.jpg" alt="Life Shift FUK の交流会に集まった参加者たち">
+        <img src="assets/images/about-community.jpg" data-cms-src="about.image" alt="Life Shift FUK の交流会に集まった参加者たち">
       </figure>
       <div class="about-intro-text">
-        <p class="about-intro-catch">人生に少し動き出す<br>きっかけをつくる場所。</p>
-        <p>大人になると、新しい人と出会ったり、新しいことに挑戦したりする機会は、意外と少なくなっていきます。毎日が忙しく、気づけば職場と家の往復だけ。そんな方も多いのではないでしょうか。</p>
-        <p>Life Shift FUKは、福岡で暮らす人たちが職業や年齢をこえて集まり、イベントや学びを通して新しいつながりを育てていくコミュニティです。</p>
-        <p>大きな一歩でなくて大丈夫。「ちょっと行ってみようかな」という気持ちから、人生が少しずつ動き出す。そんなきっかけを、福岡の街でつくっていきます。</p>
+        <p class="about-intro-catch" data-cms="about.catch">人生に少し動き出す<br>きっかけをつくる場所。</p>
+        <div class="about-intro-body" data-cms-paras="about.body">
+          <p>大人になると、新しい人と出会ったり、新しいことに挑戦したりする機会は、意外と少なくなっていきます。毎日が忙しく、気づけば職場と家の往復だけ。そんな方も多いのではないでしょうか。</p>
+          <p>Life Shift FUKは、福岡で暮らす人たちが職業や年齢をこえて集まり、イベントや学びを通して新しいつながりを育てていくコミュニティです。</p>
+          <p>大きな一歩でなくて大丈夫。「ちょっと行ってみようかな」という気持ちから、人生が少しずつ動き出す。そんなきっかけを、福岡の街でつくっていきます。</p>
+        </div>
       </div>
     </section>
 
@@ -78,14 +81,14 @@
       <div class="about-name-box">
         <p class="about-name-script" aria-hidden="true">Life Shift</p>
         <h2 class="theme-h2">名前に込めた想い</h2>
-        <p>「Life Shift」には、人生を大きく変えるのではなく、ほんの少しだけ前に動かす（シフトする）という意味を込めています。「FUK」は福岡空港の空港コード。福岡から新しい一歩へ飛び立つ、ロゴの紙飛行機にもその想いを重ねています。</p>
+        <p data-cms="about.nameText">「Life Shift」には、人生を大きく変えるのではなく、ほんの少しだけ前に動かす（シフトする）という意味を込めています。「FUK」は福岡空港の空港コード。福岡から新しい一歩へ飛び立つ、ロゴの紙飛行機にもその想いを重ねています。</p>
       </div>
     </section>
 
     <!-- 大切にしていること -->
     <section class="page-section">
       <h2 class="theme-h2">大切にしていること</h2>
-      <ul class="value-list">
+      <ul class="value-list" data-cms-list="values:about.values">
         <li>
           <h3>誰でも、ひとりでも</h3>
           <p>はじめての方やおひとりでの参加が多いコミュニティです。スタッフが会話のきっかけをつくり、自然に輪に入れるようにしています。</p>
@@ -117,7 +120,7 @@
     <!-- 参加の流れ -->
     <section class="page-section">
       <h2 class="theme-h2">参加までの流れ</h2>
-      <ol class="flow-list">
+      <ol class="flow-list" data-cms-list="flow:about.flow">
         <li>
           <span class="flow-num">STEP 1</span>
           <h3>イベントを選ぶ</h3>
@@ -147,9 +150,11 @@
       <div class="about-message">
         <img src="assets/images/logo.png" alt="" class="about-message-logo">
         <div>
-          <p>「新しい出会いがほしい」「何か始めたい」。そう思っていても、ひとりで一歩を踏み出すのは勇気がいるものです。</p>
-          <p>Life Shift FUKは、そんな気持ちにそっと寄り添える場所でありたいと思っています。ここでの出会いが、あなたの毎日を少し明るくするきっかけになればうれしいです。福岡でお会いできるのを楽しみにしています。</p>
-          <p class="about-message-sign">Life Shift FUK 運営チーム</p>
+          <div data-cms-paras="about.message">
+            <p>「新しい出会いがほしい」「何か始めたい」。そう思っていても、ひとりで一歩を踏み出すのは勇気がいるものです。</p>
+            <p>Life Shift FUKは、そんな気持ちにそっと寄り添える場所でありたいと思っています。ここでの出会いが、あなたの毎日を少し明るくするきっかけになればうれしいです。福岡でお会いできるのを楽しみにしています。</p>
+          </div>
+          <p class="about-message-sign" data-cms="about.messageSign">Life Shift FUK 運営チーム</p>
         </div>
       </div>
     </section>
@@ -159,7 +164,7 @@
       <p>はじめての方・おひとりでの参加も大歓迎です。</p>
       <div class="theme-cta-buttons">
         <a href="events/index.html" class="btn btn-gold">開催中のイベントを見る <span class="arrow">→</span></a>
-        <a href="https://lin.ee/Sg5S7Pw" target="_blank" rel="noopener" class="btn-sns btn-line">公式LINEで相談する</a>
+        <a href="https://lin.ee/Sg5S7Pw" data-cms-href="settings.lineUrl" target="_blank" rel="noopener" class="btn-sns btn-line">公式LINEで相談する</a>
       </div>
     </section>
 

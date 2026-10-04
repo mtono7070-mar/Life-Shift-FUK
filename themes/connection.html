@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&family=Dancing+Script:wght@600;700&family=Allura&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("cms-loading");setTimeout(function(){document.documentElement.classList.remove("cms-loading")},2500);</script>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="theme-page theme--connection">
@@ -35,11 +36,11 @@
         </ul>
       </nav>
       <div class="header-sns">
-        <a href="https://lin.ee/Sg5S7Pw" target="_blank" rel="noopener" class="btn-sns btn-line">
+        <a href="https://lin.ee/Sg5S7Pw" data-cms-href="settings.lineUrl" target="_blank" rel="noopener" class="btn-sns btn-line">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8.1-6C21.5 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8Zm-3.6 10.4H6.4c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.4h1.5c.3 0 .5.2.5.5s-.2.5-.5.5Zm2-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.9Zm4.6 0c0 .2-.1.4-.3.5h-.2c-.2 0-.3-.1-.4-.2l-2-2.8v2.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.2.1-.4.3-.5h.2c.2 0 .3.1.4.2l2 2.8V9c0-.3.2-.5.5-.5s.5.2.5.5v3.9Zm3.2-2.4c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.9h1.5c.3 0 .5.2.5.5s-.2.5-.5.5h-2c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5h2c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.9h1.5Z"/></svg>
           公式LINE
         </a>
-        <a href="https://www.instagram.com/life_shift_fukuoka/" target="_blank" rel="noopener" class="btn-sns btn-instagram">
+        <a href="https://www.instagram.com/life_shift_fukuoka/" data-cms-href="settings.instagramUrl" target="_blank" rel="noopener" class="btn-sns btn-instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
           Instagram
         </a>
@@ -61,17 +62,17 @@
       <div class="theme-hero-text">
         <p class="theme-hero-label">THEME 01</p>
         <h1>人脈<span class="theme-en">CONNECTION</span></h1>
-        <p class="theme-hero-catch">普段の生活では出会えない人と、つながる。</p>
+        <p class="theme-hero-catch" data-cms="themes.connection.catch">普段の生活では出会えない人と、つながる。</p>
       </div>
     </section>
 
     <section class="theme-section">
-      <p class="theme-lead-text">職場と家の往復だけでは、出会える人の数は限られています。Life Shift FUKでは、業種も年齢も立場も違う人たちが自然に集まり、気軽に話せる場をつくっています。一つの出会いが、新しい仕事や趣味、一生ものの友人につながるかもしれません。</p>
+      <p class="theme-lead-text" data-cms="themes.connection.lead">職場と家の往復だけでは、出会える人の数は限られています。Life Shift FUKでは、業種も年齢も立場も違う人たちが自然に集まり、気軽に話せる場をつくっています。一つの出会いが、新しい仕事や趣味、一生ものの友人につながるかもしれません。</p>
     </section>
 
     <section class="theme-section">
       <h2 class="theme-h2">このテーマで大切にしていること</h2>
-      <ul class="point-list">
+      <ul class="point-list" data-cms-list="points:themes.connection.points">
           <li>
             <span class="point-num">01</span>
             <h3>肩書きを外して話せる</h3>
@@ -92,7 +93,7 @@
 
     <section class="theme-section">
       <h2 class="theme-h2">主な活動・イベント例</h2>
-      <ul class="event-list">
+      <ul class="event-list" data-cms-list="theme-events:themes.connection.events">
           <li class="event-card">
             <span class="event-tag">月1〜2回</span>
             <h3>交流会・食事会</h3>
@@ -114,7 +115,7 @@
 
     <section class="theme-section">
       <h2 class="theme-h2">こんな方におすすめ</h2>
-      <ul class="recommend-list">
+      <ul class="recommend-list" data-cms-list="recommend:themes.connection.recommend">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>福岡に来たばかりで知り合いを増やしたい</li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>職場以外のつながりがほしい</li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>いろいろな価値観に触れてみたい</li>
@@ -127,7 +128,7 @@
       <p>はじめての方・おひとりでの参加も大歓迎です。</p>
       <div class="theme-cta-buttons">
         <a href="../events/index.html" class="btn btn-gold">開催中のイベントを見る <span class="arrow">→</span></a>
-        <a href="https://lin.ee/Sg5S7Pw" target="_blank" rel="noopener" class="btn-sns btn-line">公式LINEで相談する</a>
+        <a href="https://lin.ee/Sg5S7Pw" data-cms-href="settings.lineUrl" target="_blank" rel="noopener" class="btn-sns btn-line">公式LINEで相談する</a>
       </div>
     </section>
 
