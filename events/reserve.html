@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>イベント予約｜Life Shift FUK</title>
+  <meta name="description" content="Life Shift FUKのイベント予約フォーム。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&family=Dancing+Script:wght@600;700&family=Allura&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="sub-page">
+
+  <header class="site-header">
+    <span class="brush" aria-hidden="true"></span>
+
+    <a href="../index.html" class="logo" aria-label="Life Shift FUK ホーム">
+      <svg class="logo-mark" viewBox="0 0 150 62" aria-hidden="true">
+        <text x="4" y="44" class="logo-lsf">LSF</text>
+        <!-- 金色のスウッシュと紙飛行機 -->
+        <path d="M18 50 C 55 52, 95 40, 128 14" fill="none" stroke="#d4a64a" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M122 8 L142 4 L132 22 L129 14 Z" fill="#d4a64a"/>
+        <path d="M112 4 l2 4 l4 1 l-4 1 l-2 4 l-2 -4 l-4 -1 l4 -1 Z" fill="#e3bd6a"/>
+      </svg>
+      <span class="logo-text">Life Shift FUK</span>
+    </a>
+
+    <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="header-right" id="global-nav">
+      <nav class="global-nav" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="../index.html">ホーム</a></li>
+          <li><a href="../index.html#about">Life Shiftとは</a></li>
+          <li><a href="../index.html#events">イベント</a></li>
+          <li><a href="../index.html#activities">活動紹介</a></li>
+          <li><a href="../index.html#voices">参加者の声</a></li>
+          <li><a href="../index.html#faq">よくある質問</a></li>
+        </ul>
+      </nav>
+      <div class="header-sns">
+        <a href="#" class="btn-sns btn-line">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8.1-6C21.5 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8Zm-3.6 10.4H6.4c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.4h1.5c.3 0 .5.2.5.5s-.2.5-.5.5Zm2-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.9Zm4.6 0c0 .2-.1.4-.3.5h-.2c-.2 0-.3-.1-.4-.2l-2-2.8v2.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.2.1-.4.3-.5h.2c.2 0 .3.1.4.2l2 2.8V9c0-.3.2-.5.5-.5s.5.2.5.5v3.9Zm3.2-2.4c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.9h1.5c.3 0 .5.2.5.5s-.2.5-.5.5h-2c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5h2c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.9h1.5Z"/></svg>
+          公式LINE
+        </a>
+        <a href="#" class="btn-sns btn-instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <ol>
+        <li><a href="../index.html">ホーム</a></li>
+        <li><a href="index.html">イベント一覧</a></li>
+        <li aria-current="page">予約フォーム</li>
+      </ol>
+    </nav>
+
+    <section class="page-head">
+      <p class="section-label">RESERVATION</p>
+      <h1 class="split-title">イベント予約</h1>
+    </section>
+
+    <!-- イベント概要 -->
+    <section class="page-section">
+      <article class="reserve-summary" data-event-summary>
+        <img data-field="image" src="" alt="">
+        <div class="reserve-summary-body">
+          <p class="event-date" data-field="date"></p>
+          <h2 class="reserve-title" data-field="title"></h2>
+          <div class="event-tags" data-field="tags"></div>
+          <p class="reserve-desc" data-field="description"></p>
+          <dl class="reserve-info">
+            <dt>時間</dt><dd data-field="time"></dd>
+            <dt>場所</dt><dd data-field="place"></dd>
+            <dt>参加費</dt><dd data-field="fee"></dd>
+            <dt>定員</dt><dd data-field="capacity"></dd>
+          </dl>
+        </div>
+      </article>
+
+      <div class="reserve-notfound" data-not-found hidden>
+        <p>イベントが見つかりませんでした。<br>お手数ですが、イベント一覧からもう一度お選びください。</p>
+        <a href="index.html" class="btn btn-gold">イベント一覧へ <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <!-- 予約フォーム -->
+    <section class="page-section" data-reserve>
+      <ol class="reserve-steps">
+        <li class="is-active" data-step-label="input"><span>1</span>入力</li>
+        <li data-step-label="confirm"><span>2</span>確認</li>
+        <li data-step-label="done"><span>3</span>完了</li>
+      </ol>
+
+      <div class="reserve-box" data-step="input">
+        <form novalidate>
+          <input type="hidden" name="event_id">
+          <input type="hidden" name="event_name">
+
+          <div class="form-row">
+            <label for="f-name">お名前<span class="req">必須</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="例）福岡 花子" required data-label="お名前">
+          </div>
+          <div class="form-row">
+            <label for="f-kana">フリガナ<span class="req">必須</span></label>
+            <input id="f-kana" name="kana" type="text" placeholder="例）フクオカ ハナコ" required data-label="フリガナ">
+          </div>
+          <div class="form-row">
+            <label for="f-email">メールアドレス<span class="req">必須</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="例）hanako@example.com" required data-label="メールアドレス">
+          </div>
+          <div class="form-row">
+            <label for="f-tel">電話番号<span class="opt">任意</span></label>
+            <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="例）090-1234-5678" data-label="電話番号">
+          </div>
+          <div class="form-row form-row--half">
+            <div>
+              <label for="f-people">参加人数<span class="req">必須</span></label>
+              <select id="f-people" name="people" required data-label="参加人数">
+                <option value="1名">1名</option>
+                <option value="2名">2名</option>
+                <option value="3名">3名</option>
+                <option value="4名以上">4名以上</option>
+              </select>
+            </div>
+            <div>
+              <label for="f-age">年代<span class="opt">任意</span></label>
+              <select id="f-age" name="age" data-label="年代">
+                <option value="">選択してください</option>
+                <option>20代</option><option>30代</option><option>40代</option><option>50代以上</option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="form-row">
+            <legend>Life Shift FUKのイベント参加は<span class="req">必須</span></legend>
+            <div class="radio-group">
+              <label><input type="radio" name="first" value="はじめて" required data-label="参加回数" checked> はじめて</label>
+              <label><input type="radio" name="first" value="2回目以上" data-label="参加回数"> 2回目以上</label>
+            </div>
+          </fieldset>
+          <div class="form-row">
+            <label for="f-message">ご質問・ご要望<span class="opt">任意</span></label>
+            <textarea id="f-message" name="message" rows="5" placeholder="気になることがあればお気軽にどうぞ" data-label="ご質問・ご要望"></textarea>
+          </div>
+          <div class="form-agree">
+            <label><input type="checkbox" name="agree" required> <span>個人情報の取り扱いに同意します</span></label>
+          </div>
+          <button type="submit" class="btn btn-gold btn-submit">入力内容を確認する <span class="arrow">→</span></button>
+        </form>
+      </div>
+
+      <div class="reserve-box" data-step="confirm" hidden>
+        <p class="reserve-lead">以下の内容で予約します。よろしければ「予約を確定する」を押してください。</p>
+        <dl class="confirm-list" data-confirm-list></dl>
+        <div class="reserve-actions">
+          <button type="button" class="btn btn-outline" data-back>← 入力に戻る</button>
+          <button type="button" class="btn btn-gold" data-send>予約を確定する <span class="arrow">→</span></button>
+        </div>
+      </div>
+
+      <div class="reserve-box reserve-done" data-step="done" hidden>
+        <p class="reserve-done-icon" aria-hidden="true">✓</p>
+        <h2>ご予約ありがとうございます！</h2>
+        <p>ご入力のメールアドレスに、集合場所などの詳細をお送りします。<br>当日お会いできるのを楽しみにしています。</p>
+        <p class="theme-note">※ このページはデモ版のため、実際には送信されていません。</p>
+        <a href="../index.html" class="btn btn-outline">トップページへ戻る</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/events.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/reserve.js"></script>
+</body>
+</html>

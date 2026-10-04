@@ -74,7 +74,7 @@
       <p class="hero-sub">出会う。楽しむ、学ぶ、つながる。<br>人生をもっと豊かに。</p>
 
       <div class="hero-buttons">
-        <a href="#events" class="btn btn-gold">
+        <a href="events/index.html" class="btn btn-gold">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 13h2M12 13h2M8 16.5h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           開催中のイベントを見る
           <span class="arrow">→</span>
@@ -168,14 +168,82 @@
     </div>
   </section>
 
-  <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const header = document.querySelector('.site-header');
-    toggle.addEventListener('click', () => {
-      const open = header.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open);
-      toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-    });
-  </script>
+  <!-- ===== EVENT ===== -->
+  <section class="split-section events" id="events">
+    <div class="split-inner">
+      <div class="split-head">
+        <p class="section-label">EVENT</p>
+        <h2 class="split-title">新しい出会いは、<br>参加してみることから。</h2>
+        <p class="split-text">BBQ、ランチ会、ウォーキング、勉強会など<br>初めての方でも参加しやすいイベントを<br>定期的に開催しています。</p>
+        <a href="events/index.html" class="btn btn-gold btn-wide">開催中のイベントを見る <span class="arrow">→</span></a>
+      </div>
+      <ul class="event-grid" data-event-list>
+        <!-- js/events.js の内容がここに表示されます -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="split-section gallery" id="activities">
+    <div class="split-inner">
+      <div class="split-head">
+        <p class="section-label">GALLERY</p>
+        <h2 class="split-title split-title--en">Life Shift<span>の日常</span></h2>
+        <p class="split-text">イベントの様子や、<br>参加者の笑顔を写真でご紹介します。</p>
+        <a href="#" class="btn btn-outline btn-wide btn-outline--blue">Instagramで活動を見る <span class="arrow">→</span></a>
+      </div>
+      <!-- 写真は assets/images/gallery/gallery-01.jpg 〜 gallery-08.jpg を差し替えてください -->
+      <ul class="gallery-grid">
+        <li><img src="assets/images/gallery/gallery-01.jpg" alt="ギャラリー写真1" loading="lazy"></li>
+        <li><img src="assets/images/gallery/gallery-02.jpg" alt="ギャラリー写真2" loading="lazy"></li>
+        <li><img src="assets/images/gallery/gallery-03.jpg" alt="ギャラリー写真3" loading="lazy"></li>
+        <li><img src="assets/images/gallery/gallery-04.jpg" alt="ギャラリー写真4" loading="lazy"></li>
+        <li><img src="assets/images/gallery/gallery-05.jpg" alt="ギャラリー写真5" loading="lazy"></li>
+        <li><img src="assets/images/gallery/gallery-06.jpg" alt="ギャラリー写真6" loading="lazy"></li>
+        <li><img src="assets/images/gallery/gallery-07.jpg" alt="ギャラリー写真7" loading="lazy"></li>
+        <li><img src="assets/images/gallery/gallery-08.jpg" alt="ギャラリー写真8" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== VOICE ===== -->
+  <section class="split-section voices" id="voices">
+    <div class="split-inner split-inner--voice">
+      <div class="split-head">
+        <p class="section-label">VOICE</p>
+        <h2 class="split-title">参加者の声</h2>
+        <p class="split-text">実際に参加した方の声をご紹介します。</p>
+      </div>
+      <ul class="voice-list">
+        <li class="voice-card">
+          <img class="voice-avatar" src="assets/images/voice/voice-01.jpg" alt="" loading="lazy">
+          <div>
+            <p class="voice-catch">「一人参加でしたが、<br>すぐに馴染めました！」</p>
+            <p class="voice-text">最初は不安でしたが、いろんな方が話しかけてくれて楽しい時間を過ごせました。</p>
+            <p class="voice-meta">30代・女性</p>
+          </div>
+        </li>
+        <li class="voice-card">
+          <img class="voice-avatar" src="assets/images/voice/voice-02.jpg" alt="" loading="lazy">
+          <div>
+            <p class="voice-catch">「仕事以外のつながりが<br>増えました！」</p>
+            <p class="voice-text">普段出会えない人と知り合えて、視野が広がりました。</p>
+            <p class="voice-meta">20代・男性</p>
+          </div>
+        </li>
+        <li class="voice-card">
+          <img class="voice-avatar" src="assets/images/voice/voice-03.jpg" alt="" loading="lazy">
+          <div>
+            <p class="voice-catch">「遊びだけじゃなく<br>学べるのがいい！」</p>
+            <p class="voice-text">イベントを楽しみながら、お金や健康などの話もできてとても刺激になりました。</p>
+            <p class="voice-meta">30代・女性</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="js/events.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
