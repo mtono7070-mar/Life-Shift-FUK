@@ -16,15 +16,8 @@
   <header class="site-header">
     <span class="brush" aria-hidden="true"></span>
 
-    <a href="#" class="logo" aria-label="Life Shift FUK ホーム">
-      <svg class="logo-mark" viewBox="0 0 150 62" aria-hidden="true">
-        <text x="4" y="44" class="logo-lsf">LSF</text>
-        <!-- 金色のスウッシュと紙飛行機 -->
-        <path d="M18 50 C 55 52, 95 40, 128 14" fill="none" stroke="#d4a64a" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M122 8 L142 4 L132 22 L129 14 Z" fill="#d4a64a"/>
-        <path d="M112 4 l2 4 l4 1 l-4 1 l-2 4 l-2 -4 l-4 -1 l4 -1 Z" fill="#e3bd6a"/>
-      </svg>
-      <span class="logo-text">Life Shift FUK</span>
+    <a href="#" class="logo">
+      <img src="assets/images/logo.png" alt="Life Shift FUK" width="832" height="444">
     </a>
 
     <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
@@ -243,7 +236,28 @@
     </div>
   </section>
 
+  <!-- ===== FAQ ===== -->
+  <section class="split-section faq" id="faq">
+    <div class="split-inner split-inner--faq">
+      <div class="split-head">
+        <p class="section-label">FAQ</p>
+        <h2 class="split-title">よくある質問</h2>
+        <a href="faq.html" class="btn btn-outline btn-wide btn-outline--blue">よくある質問をもっと見る <span class="arrow">→</span></a>
+      </div>
+      <!-- 質問の内容は js/faq.js で編集できます -->
+      <ul class="faq-list" data-faq-list data-limit="5"></ul>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="assets/images/logo.png" alt="Life Shift FUK"></a>
+      <p class="footer-copy">&copy; Life Shift FUK</p>
+    </div>
+  </footer>
+
   <script src="js/events.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/faq.js"></script>
 </body>
 </html>

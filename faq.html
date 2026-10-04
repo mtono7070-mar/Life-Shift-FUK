@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>イベント一覧｜Life Shift FUK</title>
-  <meta name="description" content="Life Shift FUKの開催予定イベント一覧。">
+  <title>よくある質問｜Life Shift FUK</title>
+  <meta name="description" content="Life Shift FUKによく寄せられる質問と回答。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&family=Dancing+Script:wght@600;700&family=Allura&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="sub-page">
 
   <header class="site-header">
     <span class="brush" aria-hidden="true"></span>
 
-    <a href="../index.html" class="logo">
-      <img src="../assets/images/logo.png" alt="Life Shift FUK" width="832" height="444">
+    <a href="index.html" class="logo">
+      <img src="assets/images/logo.png" alt="Life Shift FUK" width="832" height="444">
     </a>
 
     <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
@@ -26,12 +26,12 @@
     <div class="header-right" id="global-nav">
       <nav class="global-nav" aria-label="グローバルナビゲーション">
         <ul>
-          <li><a href="../index.html">ホーム</a></li>
-          <li><a href="../index.html#about">Life Shiftとは</a></li>
-          <li><a href="../index.html#events">イベント</a></li>
-          <li><a href="../index.html#activities">活動紹介</a></li>
-          <li><a href="../index.html#voices">参加者の声</a></li>
-          <li><a href="../index.html#faq">よくある質問</a></li>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="index.html#about">Life Shiftとは</a></li>
+          <li><a href="index.html#events">イベント</a></li>
+          <li><a href="index.html#activities">活動紹介</a></li>
+          <li><a href="index.html#voices">参加者の声</a></li>
+          <li><a href="index.html#faq">よくある質問</a></li>
         </ul>
       </nav>
       <div class="header-sns">
@@ -50,30 +50,32 @@
   <main>
     <nav class="breadcrumb" aria-label="パンくずリスト">
       <ol>
-        <li><a href="../index.html">ホーム</a></li>
-        <li aria-current="page">イベント一覧</li>
+        <li><a href="index.html">ホーム</a></li>
+        <li aria-current="page">よくある質問</li>
       </ol>
     </nav>
 
     <section class="page-head">
-      <p class="section-label">EVENT</p>
-      <h1 class="split-title">開催予定のイベント</h1>
-      <p class="split-text">気になるイベントを選んで、予約ページからお申し込みください。<br>はじめての方・おひとりでの参加も大歓迎です。</p>
+      <p class="section-label">FAQ</p>
+      <h1 class="split-title">よくある質問</h1>
+      <p class="split-text">参加前によくいただく質問をまとめました。<br>解決しない場合は、公式LINEからお気軽にお問い合わせください。</p>
     </section>
 
     <section class="page-section">
-      <ul class="event-grid event-grid--page" data-event-list data-base="../"></ul>
+      <!-- 質問の内容は js/faq.js で編集できます -->
+      <ul class="faq-list faq-list--page" data-faq-list></ul>
+      <p class="back-link"><a href="index.html">← トップページに戻る</a></p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <a href="../index.html" class="footer-logo"><img src="../assets/images/logo.png" alt="Life Shift FUK"></a>
+      <a href="index.html" class="footer-logo"><img src="assets/images/logo.png" alt="Life Shift FUK"></a>
       <p class="footer-copy">&copy; Life Shift FUK</p>
     </div>
   </footer>
 
-  <script src="../js/events.js"></script>
-  <script src="../js/main.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/faq.js"></script>
 </body>
 </html>
