@@ -1,3 +1,20 @@
+/* ページを開いたときは一番上から表示する
+   （#about などページ内の見出しを指定して開いた場合はその位置へ） */
+(function () {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  const toTop = () => {
+    if (target) target.scrollIntoView();
+    else window.scrollTo(0, 0);
+  };
+  toTop();
+  window.addEventListener("load", () => {
+    toTop();
+    // 表示環境がスクロール位置を後から戻す場合に備えて、少し後にもう一度
+    setTimeout(toTop, 100);
+  });
+})();
+
 /* ハンバーガーメニュー */
 (function () {
   const toggle = document.querySelector(".menu-toggle");
