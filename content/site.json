@@ -397,5 +397,11 @@
       "q": "企業関係のイベントもありますか？",
       "a": "企業や団体と連携したイベントも開催しています。\nイベントの共同開催やご協賛のご相談は、公式LINEまたはInstagramのDMからお気軽にお問い合わせください。"
     }
-  ]
+  ],
+  "design": {
+    "headingFont": "Noto Serif JP",
+    "bodyFont": "Noto Sans JP",
+    "headingSize": 1,
+    "bodySize": 1
+  }
 }

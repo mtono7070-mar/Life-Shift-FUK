@@ -253,6 +253,12 @@
       ]
     },
 
+    design: {
+      group: "設定", title: "フォント・文字の大きさ", view: "../index.html",
+      lead: "サイト全体の文字の書体（フォント）と大きさを変えられます。選ぶと下の「見本」がすぐに変わります。",
+      render: renderDesign
+    },
+
     settings: {
       group: "設定", title: "LINE・Instagramのリンク",
       lead: "サイト内の「公式LINE」「Instagram」ボタンのリンク先です。",
@@ -303,9 +309,11 @@
   }
 
   // 「設定」はメニューの一番下に
-  const settingsScreen = SCREENS.settings;
-  delete SCREENS.settings;
-  SCREENS.settings = settingsScreen;
+  for (const id of ["design", "settings"]) {
+    const sc = SCREENS[id];
+    delete SCREENS[id];
+    SCREENS[id] = sc;
+  }
 
   /* ---------- サイドメニュー ---------- */
   function renderNav() {
@@ -548,6 +556,7 @@
       ["voices", "参加者の声", "感想と写真"],
       ["faq", "よくある質問", "質問と回答"],
       ["pages/top", "トップページ", "見出し・文章・写真"],
+      ["design", "フォント・文字の大きさ", "書体と大きさの変更"],
       ["settings", "LINE・Instagram", "リンク先の変更"]
     ];
     return [
@@ -565,6 +574,88 @@
         h("div", { class: "shortcut-grid" }, shortcuts.map(([id, t, s]) => h("a", { class: "shortcut", href: "#" + id }, t, h("small", { text: s }))))),
       h("div", { class: "notice" },
         h("p", { text: "保存する前なら、「変更を取り消す」でいつでも元に戻せます。複数の場所を変更して、最後にまとめて保存することもできます。" }))
+    ];
+  }
+
+  /* ---------- フォント・文字の大きさ ---------- */
+  const FONTS = window.LSF_FONTS || [];
+  const SIZES = window.LSF_FONT_SIZES || [];
+  const DEFAULT_DESIGN = window.LSF_DEFAULT_DESIGN || {};
+  const SAMPLE_HEADING = "出会いで、これからの未来をつくる。";
+  const SAMPLE_BODY = "新しい人・新しい経験・新しい自分に出会える福岡のコミュニティです。";
+  const fontCss = (name) => {
+    const f = FONTS.find((x) => x.name === name);
+    return f ? `"${f.name}", ${f.generic}` : "inherit";
+  };
+
+  // 見本表示用に、候補のフォントを見本の文字だけ読み込む（軽くするため）
+  let fontsLoaded = false;
+  function loadPreviewFonts() {
+    if (fontsLoaded || !FONTS.length) return;
+    fontsLoaded = true;
+    const chars = Array.from(new Set((SAMPLE_HEADING + SAMPLE_BODY + "見出し本文ボタン開催中のイベントを見るLife Shift FUK→").split(""))).join("");
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?" + FONTS.map((f) => "family=" + f.query).join("&") + "&text=" + encodeURIComponent(chars) + "&display=swap";
+    document.head.append(link);
+  }
+
+  function renderDesign(sc) {
+    loadPreviewFonts();
+    if (!state.draft.design) state.draft.design = clone(DEFAULT_DESIGN);
+    const d = state.draft.design;
+    const refresh = () => renderScreen(true);
+
+    const fontPicker = (key, sample, groupName) => h("div", { class: "font-options", role: "radiogroup", "aria-label": groupName },
+      FONTS.map((f) => h("label", { class: "font-option" },
+        h("input", {
+          type: "radio", name: key, value: f.name, checked: d[key] === f.name,
+          onchange: () => { setAt(["design", key], f.name); refresh(); }
+        }),
+        h("span", { class: "font-option-sample", style: `font-family: ${fontCss(f.name)}`, text: sample }),
+        h("span", { class: "font-option-label", text: f.label + (f.name === DEFAULT_DESIGN[key] ? "（今のデザイン）" : "") })
+      )));
+
+    const sizePicker = (key, groupName) => h("div", { class: "chips", role: "radiogroup", "aria-label": groupName },
+      SIZES.map((sz) => h("label", { class: "chip" },
+        h("input", {
+          type: "radio", name: key, value: sz.value, checked: Number(d[key]) === sz.value,
+          onchange: () => { setAt(["design", key], sz.value); refresh(); }
+        }),
+        sz.label)));
+
+    const hs = Number(d.headingSize) || 1, bs = Number(d.bodySize) || 1;
+    return [
+      screenHead(sc),
+      h("section", { class: "card" },
+        h("h2", { text: "見本" }),
+        h("p", { class: "card-note", text: "選んだフォントと大きさで、トップページの一番上がこのように表示されます。" }),
+        h("div", { class: "design-preview" },
+          h("p", { class: "design-preview-heading", style: `font-family:${fontCss(d.headingFont)}; font-size:${(30 * hs).toFixed(1)}px`, text: SAMPLE_HEADING }),
+          h("p", { class: "design-preview-lead", style: `font-family:${fontCss(d.headingFont)}; font-size:${(17 * hs).toFixed(1)}px`, text: SAMPLE_BODY }),
+          h("p", { class: "design-preview-body", style: `font-family:${fontCss(d.bodyFont)}; font-size:${(15 * bs).toFixed(1)}px`, text: "BBQ、ランチ会、ウォーキング、勉強会など、初めての方でも参加しやすいイベントを定期的に開催しています。" }),
+          h("span", { class: "design-preview-button", style: `font-family:${fontCss(d.bodyFont)}; font-size:${(15 * bs).toFixed(1)}px`, text: "開催中のイベントを見る →" })
+        )),
+      h("section", { class: "card" },
+        h("h2", { text: "見出し・紹介文のフォント" }),
+        h("p", { class: "card-note", text: "大きな見出しや、各コーナーの紹介文に使われます。" }),
+        fontPicker("headingFont", SAMPLE_HEADING, "見出し・紹介文のフォント")),
+      h("section", { class: "card" },
+        h("h2", { text: "メニュー・ボタン・本文のフォント" }),
+        h("p", { class: "card-note", text: "メニュー、ボタン、イベントやよくある質問などの文章に使われます。" }),
+        fontPicker("bodyFont", SAMPLE_BODY, "メニュー・ボタン・本文のフォント")),
+      h("section", { class: "card" },
+        h("h2", { text: "文字の大きさ" }),
+        h("p", { class: "card-note", text: "スマホでも見やすいように、画面の幅に合わせて自動で調整されます。" }),
+        h("div", { class: "field" }, h("span", { class: "field-label", text: "見出し・紹介文" }), sizePicker("headingSize", "見出し・紹介文の大きさ")),
+        h("div", { class: "field" }, h("span", { class: "field-label", text: "メニュー・ボタン・本文" }), sizePicker("bodySize", "メニュー・ボタン・本文の大きさ"))),
+      h("div", { class: "notice" },
+        h("p", null, "元のデザインに戻したいときは ",
+          h("button", {
+            type: "button", class: "button button--ghost button--small", text: "標準に戻す",
+            onclick: () => { setAt(["design"], clone(DEFAULT_DESIGN)); refresh(); }
+          }),
+          " を押してから「保存する」を押してください。"))
     ];
   }
 
@@ -654,6 +745,7 @@
 
   async function start() {
     const { content, sha } = await api("/content");
+    if (!content.design) content.design = clone(window.LSF_DEFAULT_DESIGN || {});
     state.saved = content;
     state.draft = clone(content);
     state.sha = sha;

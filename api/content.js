@@ -14,8 +14,21 @@ function validate(content) {
     if (!Array.isArray(content[k])) throw new Error(`「${k}」の形式が正しくありません`);
   }
 
-  for (const [name, url] of Object.entries(content.settings || {})) {
+  for (const key of ["lineUrl", "instagramUrl"]) {
+    const url = (content.settings || {})[key];
     if (url && !/^https:\/\//.test(url)) throw new Error("リンクは https:// から始まるURLを入力してください");
+  }
+
+  // フォント・文字の大きさ（任意）
+  if (content.design != null) {
+    const d = content.design;
+    if (typeof d !== "object" || Array.isArray(d)) throw new Error("フォントの設定が正しくありません");
+    for (const k of ["headingFont", "bodyFont"]) {
+      if (d[k] != null && !/^[A-Za-z0-9 ]{1,40}$/.test(d[k])) throw new Error("フォントの指定が正しくありません");
+    }
+    for (const k of ["headingSize", "bodySize"]) {
+      if (d[k] != null && !(Number(d[k]) >= 0.8 && Number(d[k]) <= 1.4)) throw new Error("文字の大きさの指定が正しくありません");
+    }
   }
 
   // 画像はサイト内の assets/ か https:// のみ

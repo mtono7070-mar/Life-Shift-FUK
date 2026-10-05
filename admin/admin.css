@@ -330,6 +330,65 @@ input[type="date"] { max-width: 240px; }
 .gallery-slot .image-preview { width: 100%; }
 .gallery-slot h3 { margin: 0 0 8px; font-size: 15px; }
 
+/* ---------- フォント・文字の大きさ ---------- */
+.font-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+
+.font-option {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.font-option:hover { border-color: var(--navy-soft); }
+.font-option input { position: absolute; opacity: 0; pointer-events: none; }
+.font-option:has(input:checked) { border-color: var(--navy); background: #eef3fb; box-shadow: 0 0 0 2px var(--navy) inset; }
+.font-option:has(input:checked)::after {
+  content: "選択中";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 1px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 999px;
+}
+.font-option:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+.font-option-sample { padding-right: 56px; font-size: 19px; font-weight: 700; line-height: 1.6; color: var(--text); }
+.font-option-label { font-size: 14px; color: var(--muted); }
+
+.design-preview {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  padding: 28px clamp(16px, 3vw, 32px);
+  background: linear-gradient(180deg, #e9eff5 0%, #f8e6cc 70%, #f3cfa0 100%);
+  border-radius: var(--radius);
+}
+
+.design-preview p { margin: 0; }
+.design-preview-heading { font-weight: 900; line-height: 1.4; color: #23262d; }
+.design-preview-lead { font-weight: 700; line-height: 1.7; color: #23262d; }
+.design-preview-body { line-height: 1.8; color: #3a3d45; }
+
+.design-preview-button {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 10px 24px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #a87b33, #c9984a 45%, #ddb468);
+  border-radius: 999px;
+}
+
+.notice .button { vertical-align: middle; }
+
 /* ---------- ホーム（使い方） ---------- */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0; padding: 0; list-style: none; }
 

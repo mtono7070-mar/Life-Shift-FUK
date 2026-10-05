@@ -166,6 +166,33 @@
     });
   }
 
+  /* ---------- フォントと文字の大きさ ---------- */
+  function applyDesign(design) {
+    const fonts = window.LSF_FONTS || [];
+    const d = Object.assign({}, window.LSF_DEFAULT_DESIGN, design);
+    const root = document.documentElement.style;
+    const queries = [];
+    [["--font-heading", d.headingFont], ["--font-body", d.bodyFont]].forEach(([prop, name]) => {
+      const f = fonts.find((x) => x.name === name);
+      if (!f) return; // 一覧にないフォントは使わない
+      root.setProperty(prop, `"${f.name}", ${f.generic}`);
+      queries.push(f.query);
+    });
+    const size = (v) => { const n = Number(v); return n >= 0.8 && n <= 1.4 ? n : 1; };
+    root.setProperty("--fs-heading", size(d.headingSize));
+    root.setProperty("--fs-body", size(d.bodySize));
+
+    // 標準以外のフォントを選んだときだけ追加で読み込む
+    const extra = queries.filter((q) => !/^Noto\+(Serif|Sans)\+JP/.test(q));
+    if (extra.length && !document.getElementById("lsf-fonts")) {
+      const link = document.createElement("link");
+      link.id = "lsf-fonts";
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?" + extra.map((q) => "family=" + q).join("&") + "&display=swap";
+      document.head.append(link);
+    }
+  }
+
   /* ---------- ページを開いたときは一番上から表示 ---------- */
   // （#faq などページ内の見出しを指定して開いた場合はその位置へ）
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -190,6 +217,7 @@
   /* ---------- 読み込み ---------- */
   function done(content) {
     if (content) {
+      try { applyDesign(content.design); } catch (e) { console.error(e); }
       try { apply(content); } catch (e) { console.error(e); }
     }
     document.documentElement.classList.remove("cms-loading");
