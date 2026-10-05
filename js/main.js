@@ -21,8 +21,11 @@
   // 改行 → <br>、［ ］で囲んだ文字 → 小さい文字
   const text = (s) => esc(s).replace(/［(.*?)］/g, "<small>$1</small>").replace(/\n/g, "<br>");
 
-  // 空行で段落に分ける
-  const paras = (s) => String(s || "").split(/\n\s*\n/).map((p) => `<p>${text(p.trim())}</p>`).join("");
+  // 空行で段落に分ける（「 」だけの段落は強調表示）
+  const paras = (s) => String(s || "").split(/\n\s*\n/).map((p) => {
+    const t = p.trim();
+    return `<p${/^「[\s\S]*」$/.test(t) ? ' class="is-quote"' : ""}>${text(t)}</p>`;
+  }).join("");
 
   const get = (obj, path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
 

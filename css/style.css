@@ -1357,6 +1357,7 @@ img { display: block; max-width: 100%; }
 
 .footer-inner {
   position: relative;
+  flex-wrap: wrap;
   z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
@@ -1367,7 +1368,60 @@ img { display: block; max-width: 100%; }
 }
 
 .footer-logo { padding: 8px 14px; background: rgba(255, 255, 255, .85); border-radius: 12px; }
-.footer-copy { margin: 0; font-size: calc(13px * var(--fs-body)); color: #3b3a38; }
+.footer-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 24px auto 0;
+  padding-top: 16px;
+  font-size: calc(13px * var(--fs-body));
+  text-align: center;
+  color: #3b3a38;
+  border-top: 1px solid rgba(29, 42, 68, .15);
+}
+
+.footer-nav { flex: 1; min-width: 0; }
+
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px clamp(14px, 2vw, 28px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-nav a {
+  display: inline-block;
+  padding: 6px 0;
+  font-size: calc(14px * var(--fs-body));
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+
+.footer-nav a:hover { color: var(--gold-dark); border-color: var(--gold); }
+
+.footer-sns-list { display: flex; gap: 10px; }
+
+.footer-sns {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  font-size: calc(13px * var(--fs-body));
+  font-weight: 700;
+  color: #fff;
+  border-radius: 999px;
+  transition: transform .2s;
+}
+
+.footer-sns:hover { transform: translateY(-2px); }
+.footer-sns--line { background: linear-gradient(90deg, var(--line-1), var(--line-2)); }
+.footer-sns--instagram { background: linear-gradient(90deg, var(--insta-1), #f0565a 55%, var(--insta-2)); }
 
 .sub-page main, .theme-page main { padding-bottom: 40px; }
 
@@ -1380,7 +1434,8 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 768px) {
-  .footer-inner { flex-direction: column; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-nav ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 16px; }
 }
 
 /* =========================================
@@ -1580,3 +1635,83 @@ img { display: block; max-width: 100%; }
   border: 1px dashed #d8d8d8;
   border-radius: 10px;
 }
+
+/* =========================================
+   運営メンバー（members.html）
+   ========================================= */
+.members-message {
+  position: relative;
+  overflow: hidden;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 64px);
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(30, 40, 70, .07);
+}
+
+.members-message::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold) 40%, var(--gold-light));
+}
+
+.members-message-label {
+  margin: 0;
+  font-size: calc(14px * var(--fs-body));
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--gold-dark);
+}
+
+.members-message-title {
+  margin: 4px 0 28px;
+  font-family: var(--font-heading);
+  font-size: calc(clamp(24px, 3vw, 34px) * var(--fs-heading));
+  color: var(--navy);
+}
+
+.members-message-body p {
+  margin: 0 0 18px;
+  font-family: var(--font-heading);
+  font-size: calc(clamp(15px, 1.4vw, 17px) * var(--fs-body));
+  line-height: 2.1;
+  color: #333;
+}
+
+.members-message-body .is-quote {
+  margin: 4px 0 22px;
+  padding: 16px 22px;
+  font-weight: 700;
+  font-size: calc(clamp(16px, 1.7vw, 20px) * var(--fs-heading));
+  line-height: 1.8;
+  color: var(--navy);
+  background: linear-gradient(100deg, rgba(240, 215, 165, .45), rgba(240, 215, 165, .15));
+  border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+}
+
+.members-message-sign {
+  position: relative;
+  z-index: 1;
+  margin: 32px 0 0;
+  font-family: var(--font-heading);
+  font-size: calc(clamp(17px, 1.8vw, 21px) * var(--fs-heading));
+  font-weight: 700;
+  text-align: right;
+  color: var(--ink);
+}
+
+.members-message-logo {
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+  width: 260px;
+  opacity: .06;
+  pointer-events: none;
+}
+
+.members-page .page-section { padding-top: clamp(20px, 3vw, 36px); padding-bottom: clamp(20px, 3vw, 36px); }
