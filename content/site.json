@@ -11,6 +11,28 @@
       "sub": "出会う。楽しむ、学ぶ、つながる。\n人生をもっと豊かに。",
       "image": "assets/uploads/20261005-197b823d.jpg"
     },
+    "heroPhotos": [
+      {
+        "image": "assets/uploads/20261005-7e169ac5.jpg",
+        "alt": "BBQ会"
+      },
+      {
+        "image": "assets/uploads/20261005-843c0642.jpg",
+        "alt": "食事会"
+      },
+      {
+        "image": "assets/uploads/20261005-743a8ed9.jpg",
+        "alt": "地域のゴミ拾い"
+      },
+      {
+        "image": "assets/uploads/20261005-6c28362f.jpg",
+        "alt": "勉強会"
+      },
+      {
+        "image": "assets/uploads/20261005-6f5cd82c.jpg",
+        "alt": "カフェ会"
+      }
+    ],
     "about": {
       "text1": "大人になると、新しい人と出会ったり\n新しいことに挑戦する機会は、意外と少なくなっています。",
       "highlight": "「人生に少し動き出すきっかけをつくる場所」",

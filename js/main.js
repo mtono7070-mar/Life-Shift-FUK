@@ -18,8 +18,8 @@
   /* ---------- 小さな道具 ---------- */
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-  // 改行 → <br>、［ ］で囲んだ文字 → 小さい文字
-  const text = (s) => esc(s).replace(/［(.*?)］/g, "<small>$1</small>").replace(/\n/g, "<br>");
+  // 改行 → <br>、［ ］（半角の [ ] も可）で囲んだ文字 → 小さい文字
+  const text = (s) => esc(s).replace(/[［[](.*?)[］\]]/g, "<small>$1</small>").replace(/\n/g, "<br>");
 
   // 空行で段落に分ける（「 」だけの段落は強調表示）
   const paras = (s) => String(s || "").split(/\n\s*\n/).map((p) => {
@@ -94,6 +94,12 @@
     gallery(items) {
       return items.slice(0, 8).map((g, i) =>
         `<li><img src="${esc(src(g.image))}" alt="${esc(g.alt || "ギャラリー写真" + (i + 1))}" loading="lazy"></li>`).join("");
+    },
+
+    // ファーストビュー下に横並びする写真（最大5枚）
+    strip(items) {
+      return items.filter((p) => p && p.image).slice(0, 5).map((p) =>
+        `<li class="photo-strip-item"><img src="${esc(src(p.image))}" alt="${esc(p.alt || "")}" loading="lazy"></li>`).join("");
     },
 
     voices(items) {

@@ -193,6 +193,14 @@
           ]
         },
         {
+          title: "見出しの下に並ぶ写真（5枚）",
+          note: "左から順に表示されます。横長の写真がおすすめです。",
+          fields: [0, 1, 2, 3, 4].flatMap((i) => [
+            S.image(`home.heroPhotos.${i}.image`, `${i + 1}枚目の写真`, null, { maxSize: 1200 }),
+            S.text(`home.heroPhotos.${i}.alt`, `${i + 1}枚目の説明（任意）`, "例：BBQで乾杯する様子")
+          ])
+        },
+        {
           title: "Life Shift FUKとは？",
           fields: [
             S.area("home.about.text1", "最初の文章", BR_HELP, { rows: 2 }),
