@@ -399,7 +399,7 @@
     }
   ],
   "design": {
-    "headingFont": "Noto Serif JP",
+    "headingFont": "Noto Sans JP",
     "bodyFont": "Noto Sans JP",
     "headingSize": 1,
     "bodySize": 1
