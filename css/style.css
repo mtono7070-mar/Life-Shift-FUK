@@ -278,24 +278,6 @@ img { display: block; max-width: 100%; }
   padding: 0 34px;
 }
 
-/* 右上の手書き風英字 */
-.hero-script {
-  position: absolute;
-  z-index: 3;
-  top: clamp(24px, 3vw, 44px);
-  right: clamp(20px, 4vw, 60px);
-  margin: 0;
-  font-family: "Allura", cursive;
-  font-size: clamp(30px, 3.2vw, 48px);
-  line-height: 1.05;
-  color: #c99a3e;
-  transform: rotate(-14deg);
-  text-shadow: 0 1px 6px rgba(255, 255, 255, .7);
-}
-
-.hero-script span { display: inline-block; padding-left: .6em; }
-.hero-script .indent { padding-left: 1.4em; }
-
 .hero-wave {
   position: absolute;
   left: 0;
@@ -388,15 +370,6 @@ img { display: block; max-width: 100%; }
   .hero-title .line1 { font-size: calc(10vw * var(--fs-heading)); }
   .hero-title .line2 { font-size: calc(7.6vw * var(--fs-heading)); padding-left: 0; }
   .hero-lead { font-size: calc(4vw * var(--fs-heading)); transform: none; }
-
-  .hero-script {
-    top: auto;
-    bottom: 120px;
-    right: 16px;
-    font-size: calc(28px * var(--fs-body));
-    color: #f6dca0;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
-  }
 
   .hero-buttons { position: relative; z-index: 3; }
 }
