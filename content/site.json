@@ -9,28 +9,28 @@
       "title2": "人生［をもっと］豊か［にする］",
       "lead": "新しい人・新しい経験・新しい自分に出会える\n福岡のコミュニティです",
       "sub": "",
-      "image": "assets/uploads/20261011-9cd74f6e.jpg"
+      "image": "assets/images/hero/hero-main.jpg"
     },
     "heroPhotos": [
       {
-        "image": "assets/uploads/20261005-7e169ac5.jpg",
-        "alt": "BBQ会"
+        "image": "assets/images/hero/hero-photo-01.jpg",
+        "alt": "バーベキューで交流する参加者"
       },
       {
-        "image": "assets/uploads/20261005-843c0642.jpg",
-        "alt": "食事会"
+        "image": "assets/images/hero/hero-photo-02.jpg",
+        "alt": "笑顔の参加者"
       },
       {
-        "image": "assets/uploads/20261005-743a8ed9.jpg",
-        "alt": "地域のゴミ拾い"
+        "image": "assets/images/hero/hero-photo-03.jpg",
+        "alt": "夕日の中で乾杯"
       },
       {
-        "image": "assets/uploads/20261005-6c28362f.jpg",
-        "alt": "勉強会"
+        "image": "assets/images/hero/hero-photo-04.jpg",
+        "alt": "みんなで記念撮影"
       },
       {
-        "image": "assets/uploads/20261005-6f5cd82c.jpg",
-        "alt": "カフェ会"
+        "image": "assets/images/hero/hero-photo-05.jpg",
+        "alt": "海辺で談笑する参加者"
       }
     ],
     "about": {

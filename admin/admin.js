@@ -189,12 +189,12 @@
             S.text("home.hero.title2", "見出し 2行目", "例：これからの未来［を］つくる。"),
             S.area("home.hero.lead", "見出しの下の文章", BR_HELP, { rows: 2 }),
             S.area("home.hero.sub", "小さい文章", BR_HELP, { rows: 2 }),
-            S.image("home.hero.image", "背景の写真", "横長の写真がおすすめです。人物は右側に表示されます。", { maxSize: 2000 })
+            S.image("home.hero.image", "大きい写真", "横長の写真がおすすめです。写真の右側が大きく見え、左側は文字の背景になじみます。下の端は5枚の写真で隠れます。", { maxSize: 2000 })
           ]
         },
         {
-          title: "見出しの下に並ぶ写真（5枚）",
-          note: "左から順に表示されます。横長の写真がおすすめです。",
+          title: "大きい写真の下に並ぶ写真（5枚）",
+          note: "大きい写真の下の帯に、左から順に表示されます。1番目は左端が背景になじむように薄く表示されます。横長の写真がおすすめです。",
           fields: [0, 1, 2, 3, 4].flatMap((i) => [
             S.image(`home.heroPhotos.${i}.image`, `${i + 1}枚目の写真`, null, { maxSize: 1200 }),
             S.text(`home.heroPhotos.${i}.alt`, `${i + 1}枚目の説明（任意）`, "例：BBQで乾杯する様子")

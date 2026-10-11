@@ -52,7 +52,8 @@
   <!-- ===== ヒーロー ===== -->
   <section class="hero">
     <div class="hero-photo">
-      <img src="assets/images/hero-community.jpg" data-cms-src="home.hero.image" alt="Life Shift FUK のイベントでピースサインをする参加者たち">
+      <!-- 大きい写真：管理画面「トップページ」→「大きい写真」で差し替え -->
+      <img src="assets/images/hero/hero-main.jpg" data-cms-src="home.hero.image" alt="夕日の海辺でピースサインをする参加者たち">
     </div>
 
     <div class="hero-inner">
@@ -78,23 +79,21 @@
       </div>
     </div>
 
+    <!-- 下に並ぶ写真（5枚）
+         管理画面「トップページ」→「下に並ぶ写真（5枚）」で1枚ずつ差し替えられます。
+         （直接変更する場合は content/site.json の home.heroPhotos） -->
+    <ul class="hero-strip" data-cms-list="strip:home.heroPhotos">
+      <li class="hero-strip-item"><img src="assets/images/hero/hero-photo-01.jpg" alt="バーベキューで交流する参加者"></li>
+      <li class="hero-strip-item"><img src="assets/images/hero/hero-photo-02.jpg" alt="笑顔の参加者"></li>
+      <li class="hero-strip-item"><img src="assets/images/hero/hero-photo-03.jpg" alt="夕日の中で乾杯"></li>
+      <li class="hero-strip-item"><img src="assets/images/hero/hero-photo-04.jpg" alt="みんなで記念撮影"></li>
+      <li class="hero-strip-item"><img src="assets/images/hero/hero-photo-05.jpg" alt="海辺で談笑する参加者"></li>
+    </ul>
+
     <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 30 C 240 0, 480 0, 720 26 S 1200 56, 1440 18 L1440 60 L0 60 Z" fill="#ffffff"/>
       <path d="M0 40 C 260 14, 520 16, 760 36 S 1220 60, 1440 30" fill="none" stroke="#d4a64a" stroke-opacity=".45" stroke-width="2"/>
     </svg>
-  </section>
-
-  <!-- ===== ファーストビュー下の写真（5枚） =====
-       写真は管理画面「トップページ」→「見出しの下に並ぶ写真」で差し替えられます。
-       （直接変更する場合は content/site.json の home.heroPhotos） -->
-  <section class="photo-strip" aria-label="Life Shift FUK の活動写真">
-    <ul class="photo-strip-list" data-cms-list="strip:home.heroPhotos">
-      <li class="photo-strip-item"><img src="assets/images/events/bbq.jpg" alt="BBQで交流する参加者" loading="lazy"></li>
-      <li class="photo-strip-item"><img src="assets/images/gallery/gallery-01.jpg" alt="食事会の様子" loading="lazy"></li>
-      <li class="photo-strip-item"><img src="assets/images/events/walking.jpg" alt="ウォーキングイベント" loading="lazy"></li>
-      <li class="photo-strip-item"><img src="assets/images/events/money-study.jpg" alt="勉強会の様子" loading="lazy"></li>
-      <li class="photo-strip-item"><img src="assets/images/gallery/gallery-02.jpg" alt="カフェ会の様子" loading="lazy"></li>
-    </ul>
   </section>
 
   <!-- ===== About ===== -->

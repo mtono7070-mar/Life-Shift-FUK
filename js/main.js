@@ -96,10 +96,10 @@
         `<li><img src="${esc(src(g.image))}" alt="${esc(g.alt || "ギャラリー写真" + (i + 1))}" loading="lazy"></li>`).join("");
     },
 
-    // ファーストビュー下に横並びする写真（最大5枚）
+    // ファーストビューの下に並ぶ写真（最大5枚）
     strip(items) {
       return items.filter((p) => p && p.image).slice(0, 5).map((p) =>
-        `<li class="photo-strip-item"><img src="${esc(src(p.image))}" alt="${esc(p.alt || "")}" loading="lazy"></li>`).join("");
+        `<li class="hero-strip-item"><img src="${esc(src(p.image))}" alt="${esc(p.alt || "")}"></li>`).join("");
     },
 
     voices(items) {

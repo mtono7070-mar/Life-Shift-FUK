@@ -287,44 +287,48 @@ img { display: block; max-width: 100%; }
   height: 50px;
 }
 
-/* ---------- ファーストビュー下の写真（5枚） ---------- */
-.photo-strip {
-  position: relative;
-  padding: 18px var(--gutter) 24px;
-  background: #fff;
+/* ---------- 大きい写真の下に並ぶ写真（5枚） ---------- */
+.hero {
+  --strip-h: clamp(120px, 12.5vw, 200px);
 }
 
-.photo-strip-list {
+.hero-inner { padding-bottom: calc(var(--strip-h) + 40px); }
+
+.hero-strip {
+  position: absolute;
+  z-index: 2;
+  left: 30%;
+  right: -2%;
+  bottom: 12px;
+  height: var(--strip-h);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: clamp(10px, 1.2vw, 18px);
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 5px;
+  margin: 0;
+  padding: 5px 0;
   list-style: none;
+  background: #fff;
+  transform: rotate(-1.2deg);
+  transform-origin: right bottom;
+  box-shadow: 0 -4px 18px rgba(80, 50, 20, .12);
+  /* 左端は背景になじませる */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .5) 8%, #000 20%);
+          mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .5) 8%, #000 20%);
 }
 
-.photo-strip-list:empty { display: none; }
+.hero-strip:empty { display: none; }
 
-.photo-strip-item {
+.hero-strip-item {
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-  border-radius: 14px;
-  background: #eef3f7;
-  box-shadow: 0 8px 20px rgba(29, 42, 68, .1);
+  background: #f3e6d4;
 }
 
-/* 交互に少しずらして、リズムのある並びに */
-.photo-strip-item:nth-child(even) { transform: translateY(14px); }
-
-.photo-strip-item img {
+.hero-strip-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .5s ease;
 }
-
-.photo-strip-item:hover img { transform: scale(1.05); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1180px) {
@@ -412,19 +416,24 @@ img { display: block; max-width: 100%; }
 
   .hero-buttons { position: relative; z-index: 3; }
 
-  /* スマホでは横にスワイプして見る */
-  .photo-strip { padding: 14px 0 20px; }
-  .photo-strip-list {
+  /* スマホでは写真の下に小さく並べ、横にスワイプして見る */
+  .hero { --strip-h: 92px; min-height: 760px; }
+  .hero-inner { padding-bottom: 90px; }
+  .hero-strip {
+    left: 0;
+    right: 0;
+    bottom: 14px;
     display: flex;
-    gap: 12px;
-    padding: 0 var(--gutter) 14px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
     scrollbar-width: none;
+    transform: rotate(-1.5deg) scale(1.03);
+    transform-origin: center;
+    -webkit-mask-image: none;
+            mask-image: none;
   }
-  .photo-strip-list::-webkit-scrollbar { display: none; }
-  .photo-strip-item { flex: 0 0 62%; scroll-snap-align: start; }
+  .hero-strip::-webkit-scrollbar { display: none; }
+  .hero-strip-item { flex: 0 0 38%; scroll-snap-align: start; }
 }
 
 @media (max-width: 480px) {
