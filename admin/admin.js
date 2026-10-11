@@ -203,10 +203,14 @@
         {
           title: "Life Shift FUKとは？",
           fields: [
+            S.text("home.about.label", "小さな英字の見出し", "例：ABOUT US"),
+            S.text("home.about.title", "見出し", "［ ］で囲んだ文字は小さく表示されます。例：Life Shift FUK［とは？］"),
+            S.text("home.about.name", "強調の一文の前に入る言葉", "例：Life Shift FUKは、"),
             S.area("home.about.text1", "最初の文章", BR_HELP, { rows: 2 }),
             S.text("home.about.highlight", "強調する一文", "色付きの帯で目立たせて表示されます。"),
             S.area("home.about.text2", "続きの文章", BR_HELP, { rows: 3 }),
-            S.image("home.about.image", "写真")
+            S.image("home.about.image", "写真"),
+            S.area("home.about.script", "写真に重ねる英字", "1行ずつ改行して入力します（3行くらいがおすすめ）。空にすると表示されません。", { rows: 3 })
           ]
         },
         { title: "5つのテーマ", note: "各テーマの文章は、左のメニューの「5つのテーマ」から変更できます。", fields: [S.area("home.themesLead", "見出しの下の文章", "", { rows: 2 })] },

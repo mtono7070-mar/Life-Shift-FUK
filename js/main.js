@@ -160,6 +160,14 @@
       const v = get(content, el.dataset.cmsParas);
       if (typeof v === "string") el.innerHTML = paras(v);
     });
+    // 写真に重ねる手書き風の英字（1行ずつ少しずつ右へずらす。空なら表示しない）
+    document.querySelectorAll("[data-cms-script]").forEach((el) => {
+      const v = get(content, el.dataset.cmsScript);
+      if (typeof v !== "string") return;
+      const lines = v.split("\n").map((l) => l.trim()).filter(Boolean);
+      el.hidden = lines.length === 0;
+      el.innerHTML = lines.map((l, i) => (i === 0 ? esc(l) : `<span${i >= 2 ? ' class="indent"' : ""}>${esc(l)}</span>`)).join("<br>");
+    });
     document.querySelectorAll("[data-cms-src]").forEach((el) => {
       const v = get(content, el.dataset.cmsSrc);
       if (v) el.src = src(v);
