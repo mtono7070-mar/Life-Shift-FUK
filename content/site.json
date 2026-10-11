@@ -12,10 +12,14 @@
       "image": "assets/uploads/20261011-9cd74f6e.jpg"
     },
     "about": {
+      "label": "ABOUT US",
+      "title": "Life Shift FUK［とは？］",
+      "name": "Life Shift FUKは、",
       "text1": "大人になると、新しい人と出会ったり\n新しいことに挑戦する機会は、少なくなっています。",
       "highlight": "「人生に少し動き出すきっかけをつくる場所」",
       "text2": "職業や年齢をこえて、さまざまな人が集まり、\nイベントや学びを通して、新しいつながりが生まれる、\nそんなコミュニティです。",
-      "image": "assets/images/about-community.jpg"
+      "image": "assets/images/about-community.jpg",
+      "script": "New Encounters\nNew Experiences\nA Better You"
     },
     "themesLead": "Life Shiftでは、人生をより豊かにしていくために、5つのテーマを大切にしています。",
     "eventsTitle": "新しい出会いは、\n参加してみることから。",
