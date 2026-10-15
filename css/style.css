@@ -155,7 +155,9 @@ img { display: block; max-width: 100%; }
 
 .hero-photo {
   position: absolute;
-  inset: 0 0 0 30%;
+  /* 下の5枚の写真の上までの枠に収める（写真同士が重ならないように）
+     帯は少し傾いているので、その分（1.5vw）だけ下に伸ばして隙間をなくす */
+  inset: 0 0 calc(var(--strip-h) + 12px - 1.5vw) 30%;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 14%, #000 32%);
           mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 14%, #000 32%);
 }
@@ -164,7 +166,7 @@ img { display: block; max-width: 100%; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 60% 80%;
+  object-position: 50% 60%;
 }
 
 /* 写真全体に夕暮れ色の柔らかいトーンを重ねる */
@@ -397,13 +399,13 @@ img { display: block; max-width: 100%; }
   .hero { min-height: 720px; }
 
   .hero-photo {
-    inset: auto 0 0 0;
-    height: 46%;
+    inset: auto 0 calc(var(--strip-h) + 16px) 0;
+    height: 34%;
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%);
             mask-image: linear-gradient(180deg, transparent 0%, #000 30%);
   }
 
-  .hero-photo img { object-position: 50% 70%; }
+  .hero-photo img { object-position: 50% 60%; }
 
   .hero::before {
     background: linear-gradient(180deg, rgba(255, 246, 232, .7) 0%, rgba(255, 240, 220, .45) 45%, rgba(255, 236, 210, 0) 65%);
