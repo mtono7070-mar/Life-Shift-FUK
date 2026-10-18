@@ -276,7 +276,9 @@
         title: "代表メッセージ",
         fields: [
           S.area("members.message", "メッセージ", "段落を分けたいときは、1行あけてください。「 」だけの段落は、色付きの帯で強調して表示されます。", { rows: 18 }),
-          S.text("members.sign", "署名", "例：代表　山田大輝"),
+          S.text("members.signRole", "署名（役職）", "例：代表"),
+          S.text("members.signName", "署名（名前）", "例：山田大輝"),
+          S.image("members.signPhoto", "署名の写真", "名前の左に丸く表示されます。顔が真ん中にある写真がおすすめです。", { round: true, maxSize: 600 }),
           S.image("members.messageLogo", "メッセージ下のロゴ", "背景が透明なPNG画像がおすすめです。", { maxSize: 1000, keepPng: true })
         ]
       }, {

@@ -1745,15 +1745,38 @@ img { display: block; max-width: 100%; }
   border-radius: 0 10px 10px 0;
 }
 
-.members-message-sign {
+/* 署名：中央に、写真（左）＋役職・名前（右） */
+.members-sign {
   position: relative;
   z-index: 1;
-  margin: 32px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2.4vw, 24px);
+  margin: 40px 0 0;
+}
+.members-sign-photo {
+  flex-shrink: 0;
+  width: clamp(84px, 9vw, 100px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 14px rgba(30, 40, 70, .15);
+}
+.members-message-sign {
+  margin: 0;
   font-family: var(--font-heading);
-  font-size: calc(clamp(17px, 1.8vw, 21px) * var(--fs-heading));
   font-weight: 700;
-  text-align: right;
+  line-height: 1.4;
   color: var(--ink);
+}
+.members-sign-role { display: block; font-size: calc(clamp(13px, 1.2vw, 15px) * var(--fs-body)); letter-spacing: .1em; color: var(--gold-dark); }
+.members-sign-name { display: block; margin-top: 2px; font-size: calc(clamp(20px, 2.1vw, 24px) * var(--fs-heading)); letter-spacing: .08em; }
+
+/* スマホでは写真の下に名前（中央そろえ） */
+@media (max-width: 520px) {
+  .members-sign { flex-direction: column; gap: 10px; text-align: center; }
 }
 
 .members-message-logo {
