@@ -102,6 +102,24 @@
         `<li class="hero-strip-item"><img src="${esc(src(p.image))}" alt="${esc(p.alt || "")}"></li>`).join("");
     },
 
+    // スポンサー企業（0社のときは「募集中」の文章を表示）
+    sponsors(items, el) {
+      const safeUrl = (u) => (/^https?:\/\//i.test(String(u || "").trim()) ? String(u).trim() : "");
+      const list = items.filter((c) => c && c.name);
+      const empty = el.parentElement.querySelector(".sponsor-empty");
+      if (empty) empty.hidden = list.length > 0;
+      return list.map((c) => {
+        const url = safeUrl(c.url);
+        return `
+        <li class="sponsor-card">
+          <div class="sponsor-logo"><img src="${esc(src(c.logo || "assets/images/sponsors/logo-placeholder.svg"))}" alt="${esc(c.name)} のロゴ" loading="lazy"></div>
+          <h3 class="sponsor-name">${esc(c.name)}</h3>
+          ${c.text ? `<p class="sponsor-text">${text(c.text)}</p>` : ""}
+          ${url ? `<a class="sponsor-more" href="${esc(url)}" target="_blank" rel="noopener">詳細 <span aria-hidden="true">→</span></a>` : ""}
+        </li>`;
+      }).join("");
+    },
+
     // 運営メンバー紹介
     team(items) {
       const block = (label, value) => (value ? `<div class="team-item"><p class="team-label">【${label}】</p><p>${text(value)}</p></div>` : "");

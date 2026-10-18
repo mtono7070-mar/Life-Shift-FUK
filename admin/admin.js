@@ -305,6 +305,46 @@
       }]
     },
 
+    "pages/sponsors": {
+      group: "ページの文章・写真", title: "スポンサー企業", view: "../sponsors.html",
+      lead: "ヘッダー・フッターの「スポンサー企業」から開くページです。",
+      keywords: "スポンサー 協賛 企業 会社 ロゴ 応援",
+      sections: [
+        {
+          title: "一番上のバナー",
+          fields: [
+            S.image("sponsors.banner", "バナーの写真", "横長の写真がおすすめです。中央に縦書きの見出しが重なります。", { maxSize: 2000 }),
+            S.text("sponsors.bannerTitle", "縦書きの見出し", "例：スポンサー企業（短い言葉がおすすめです）")
+          ]
+        },
+        {
+          title: "見出しと紹介文",
+          fields: [
+            S.text("sponsors.title", "見出し", "例：Life Shift FUKを応援してくださる企業"),
+            S.area("sponsors.lead", "紹介文", BR_HELP, { rows: 3 }),
+            S.area("sponsors.empty", "企業が0社のときの文章", "企業をすべて削除したときに、カードの代わりに表示されます。", { rows: 2 })
+          ]
+        },
+        {
+          title: "スポンサー企業",
+          note: "カードの並び順は「↑ 上へ」「↓ 下へ」で変えられます。URLを入れたときだけ「詳細」ボタンが表示されます。",
+          fields: [{
+            type: "list", key: "sponsors.list", addLabel: "＋ 企業を追加", movable: true,
+            newItem: () => ({ name: "", logo: "assets/images/sponsors/logo-placeholder.svg", text: "", url: "" }),
+            itemTitle: (it) => it.name || "（企業名未入力）",
+            itemSub: (it) => it.url,
+            thumb: (it) => it.logo || "assets/images/sponsors/logo-placeholder.svg",
+            fields: [
+              S.text("name", "企業名", "例：株式会社〇〇"),
+              S.image("logo", "ロゴ", "背景が透明なPNG画像もそのまま使えます。", { maxSize: 800, keepPng: true }),
+              S.area("text", "紹介文", BR_HELP, { rows: 3 }),
+              { type: "url", key: "url", label: "「詳細」ボタンのリンク先", help: "企業のホームページなど（https:// から始まるURL）。空にするとボタンは表示されません。" }
+            ]
+          }]
+        }
+      ]
+    },
+
     logo: {
       group: "設定", title: "ロゴ", view: "../index.html",
       lead: "すべてのページの左上（ヘッダー）と、一番下（フッター）に表示されるロゴです。",

@@ -331,9 +331,20 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   .btn-sns { min-width: 0; padding: 0 18px; font-size: calc(14px * var(--fs-body)); }
   .global-nav a { font-size: calc(13px * var(--fs-body)); }
+  .global-nav ul { gap: 16px; }
+  .header-right { gap: 18px; }
+}
+
+/* メニュー項目が多いので、狭めのPC幅ではさらに詰める */
+@media (max-width: 1200px) {
+  .global-nav ul { gap: 12px; }
+  .header-right { gap: 14px; }
+  .header-sns { gap: 8px; }
+  .btn-sns { height: 42px; padding: 0 14px; gap: 6px; font-size: calc(13px * var(--fs-body)); }
+  .btn-sns svg { width: 18px; height: 18px; }
 }
 
 @media (max-width: 1024px) {
@@ -1846,3 +1857,109 @@ img { display: block; max-width: 100%; }
   .team-card { padding: 16px 10px 18px; }
   .team-item p { font-size: calc(12.5px * var(--fs-body)); }
 }
+
+/* =========================================
+   スポンサー企業ページ
+   ========================================= */
+.sponsor-banner {
+  position: relative;
+  height: clamp(220px, 32vw, 420px);
+  overflow: hidden;
+  background: #e9eef4;
+}
+.sponsor-banner img { width: 100%; height: 100%; object-fit: cover; }
+/* 縦書きの見出し（参考デザインのように中央に） */
+.sponsor-banner-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 22px 14px;
+  writing-mode: vertical-rl;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: calc(clamp(18px, 2.4vw, 32px) * var(--fs-heading));
+  letter-spacing: .2em;
+  line-height: 1.2;
+  white-space: nowrap; /* 1列に収める */
+  color: var(--navy);
+  background: rgba(255, 255, 255, .78);
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .12);
+}
+
+.sponsors { padding-top: clamp(24px, 4vw, 48px); }
+.sponsors-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: calc(clamp(20px, 2.4vw, 28px) * var(--fs-heading));
+  line-height: 1.4;
+  color: var(--ink);
+}
+.sponsors-title-logo { width: auto; height: 1.6em; flex-shrink: 0; }
+.sponsors-lead {
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  font-family: var(--font-heading);
+  font-size: calc(clamp(14px, 1.3vw, 16px) * var(--fs-body));
+  line-height: 1.9;
+  color: #333;
+}
+
+.sponsor-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 320px));
+  justify-content: center;
+  gap: clamp(16px, 2.4vw, 28px);
+  margin: 0 0 40px;
+  padding: 0;
+  list-style: none;
+}
+.sponsor-list:empty { display: none; }
+.sponsor-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 22px 20px 24px;
+  background: #fff;
+  border: 1px solid rgba(212, 166, 74, .55);
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+.sponsor-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 18px;
+}
+.sponsor-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.sponsor-name { margin: 0 0 10px; font-size: calc(17px * var(--fs-body)); font-weight: 700; line-height: 1.5; color: var(--ink); }
+.sponsor-text { margin: 0 0 16px; font-size: calc(14px * var(--fs-body)); line-height: 1.8; color: #444; }
+.sponsor-more {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 7px 18px;
+  font-size: calc(13px * var(--fs-body));
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #a87b33, #c9984a 45%, #ddb468);
+  border-radius: 999px;
+  transition: transform .2s, box-shadow .2s;
+}
+.sponsor-more:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(140, 95, 30, .25); }
+.sponsor-empty {
+  margin: 0 0 40px;
+  padding: 28px 20px;
+  text-align: center;
+  line-height: 1.8;
+  color: #555;
+  border: 1px dashed #d6d9de;
+  border-radius: 10px;
+}
+.sponsor-empty[hidden] { display: none; }
+
