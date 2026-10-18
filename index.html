@@ -256,7 +256,8 @@
       <div class="split-head">
         <p class="section-label">FAQ</p>
         <h2 class="split-title">よくある質問</h2>
-        <a href="faq.html" class="btn btn-outline btn-wide btn-outline--blue">よくある質問をもっと見る <span class="arrow">→</span></a>
+        <!-- 質問がトップに表示しきれない数（6件以上）のときだけ表示されます -->
+        <a href="faq.html" class="btn btn-outline btn-wide btn-outline--blue faq-more" hidden>よくある質問をもっと見る <span class="arrow">→</span></a>
       </div>
       <!-- 質問の内容は js/faq.js で編集できます -->
       <ul class="faq-list" data-cms-list="faq" data-cms-limit="5"></ul>

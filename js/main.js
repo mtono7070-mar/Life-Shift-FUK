@@ -82,6 +82,9 @@
 
     faq(items, el) {
       const limit = Number(el.dataset.cmsLimit) || items.length;
+      // トップページ：表示しきれない質問があるときだけ「もっと見る」ボタンを出す
+      const more = el.closest("section") && el.closest("section").querySelector(".faq-more");
+      if (more) more.hidden = items.length <= limit;
       return items.slice(0, limit).map((item) => `
         <li class="faq-item">
           <details>

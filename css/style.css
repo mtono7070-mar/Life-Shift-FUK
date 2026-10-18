@@ -1962,4 +1962,5 @@ img { display: block; max-width: 100%; }
   border-radius: 10px;
 }
 .sponsor-empty[hidden] { display: none; }
+.faq-more[hidden] { display: none; }
 
