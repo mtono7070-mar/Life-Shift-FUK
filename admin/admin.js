@@ -287,7 +287,7 @@
           S.area("members.teamLead", "見出しの下の文章", BR_HELP, { rows: 2 }),
           {
             type: "list", key: "members.team", addLabel: "＋ メンバーを追加", movable: true,
-            newItem: () => ({ name: "", image: "assets/images/members/member-placeholder.svg", area: "", role: "", work: "", links: [] }),
+            newItem: () => ({ name: "", image: "assets/images/members/member-placeholder.svg", area: "", role: "", work: "" }),
             itemTitle: (it) => it.name || "（名前未入力）",
             itemSub: (it) => it.role,
             thumb: (it) => it.image || "assets/images/members/member-placeholder.svg",
@@ -296,17 +296,7 @@
               S.image("image", "顔写真", "丸く切り抜いて表示されます。正方形に近い写真がおすすめです。", { round: true, maxSize: 600 }),
               S.text("area", "【拠点】", "例：福岡"),
               S.text("role", "【Life Shift FUK担当】", "例：イベント企画・広報"),
-              S.area("work", "【お仕事・活動内容】", BR_HELP, { rows: 4 }),
-              {
-                type: "list", key: "links", addLabel: "＋ リンクを追加", movable: true,
-                newItem: () => ({ label: "", url: "" }),
-                itemTitle: (it) => it.label || "（表示名未入力）",
-                itemSub: (it) => it.url,
-                fields: [
-                  S.text("label", "表示名", "例：Instagram、ホームページ"),
-                  { type: "url", key: "url", label: "URL", help: "https:// から始まるURL" }
-                ]
-              }
+              S.area("work", "【お仕事・活動内容】", BR_HELP, { rows: 4 })
             ]
           }
         ]

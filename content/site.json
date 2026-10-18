@@ -435,26 +435,14 @@
         "image": "assets/images/members/member-placeholder.svg",
         "area": "福岡",
         "role": "イベント企画・運営",
-        "work": "お仕事や活動内容をここに入力します。",
-        "links": [
-          {
-            "label": "Instagram",
-            "url": "https://www.instagram.com/life_shift_fukuoka/"
-          }
-        ]
+        "work": "お仕事や活動内容をここに入力します。"
       },
       {
         "name": "メンバー名（2）",
         "image": "assets/images/members/member-placeholder.svg",
         "area": "福岡",
         "role": "イベント企画・運営",
-        "work": "お仕事や活動内容をここに入力します。",
-        "links": [
-          {
-            "label": "Instagram",
-            "url": "https://www.instagram.com/life_shift_fukuoka/"
-          }
-        ]
+        "work": "お仕事や活動内容をここに入力します。"
       }
     ]
   }

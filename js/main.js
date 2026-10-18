@@ -104,21 +104,15 @@
 
     // 運営メンバー紹介
     team(items) {
-      const safeUrl = (u) => (/^https?:\/\//i.test(String(u || "").trim()) ? String(u).trim() : "");
       const block = (label, value) => (value ? `<div class="team-item"><p class="team-label">【${label}】</p><p>${text(value)}</p></div>` : "");
-      return items.filter((m) => m && m.name).map((m) => {
-        const links = (m.links || []).filter((l) => l && l.label && safeUrl(l.url))
-          .map((l) => `<a href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("");
-        return `
+      return items.filter((m) => m && m.name).map((m) => `
         <li class="team-card">
           <img class="team-photo" src="${esc(src(m.image || "assets/images/members/member-placeholder.svg"))}" alt="${esc(m.name)}" loading="lazy">
           <h3 class="team-name">${esc(m.name)}</h3>
           ${block("拠点", m.area)}
           ${block("Life Shift FUK担当", m.role)}
           ${block("お仕事・活動内容", m.work)}
-          ${links ? `<div class="team-item"><p class="team-label">【PRリンク】</p><p class="team-links">${links}</p></div>` : ""}
-        </li>`;
-      }).join("");
+        </li>`).join("");
     },
 
     voices(items) {
