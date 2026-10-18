@@ -231,8 +231,6 @@ img { display: block; max-width: 100%; }
   font-size: calc(clamp(17px, 1.75vw, 24px) * var(--fs-heading));
   line-height: 1.75;
   color: var(--ink);
-  transform: rotate(-2deg);
-  transform-origin: left center;
   text-shadow: 0 1px 8px rgba(255, 255, 255, .7);
 }
 
