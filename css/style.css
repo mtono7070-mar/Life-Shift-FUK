@@ -1757,7 +1757,7 @@ img { display: block; max-width: 100%; }
 }
 .members-sign-photo {
   flex-shrink: 0;
-  width: clamp(84px, 9vw, 100px);
+  width: clamp(130px, 14vw, 160px);
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 50%;
