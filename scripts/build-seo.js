@@ -1,6 +1,7 @@
 // SEO（検索・SNSでの見え方）を各ページに書き込むスクリプト
-//   node scripts/build-seo.js
-// Vercel が公開するたびに自動で実行されます（vercel.json の buildCommand）。
+//   node scripts/build-seo.js              … このフォルダのHTMLにそのまま書き込む
+//   node scripts/build-seo.js --out public … サイトを public/ にコピーしてから書き込む（Vercelの公開用）
+// Vercel が公開するたびに自動で実行されます（vercel.json の buildCommand / outputDirectory）。
 // 管理画面の「検索・SNSの表示（SEO）」で入力した内容から、次のものを作ります。
 //   1. 各ページの <title>・説明文・SNSでシェアしたときの表示（OGP）・正式なURL（canonical）
 //   2. sitemap.xml と robots.txt
@@ -10,6 +11,11 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
+// 書き込み先（--out を付けたときはそのフォルダ）
+const outArg = process.argv.indexOf("--out");
+const OUT = outArg > 0 && process.argv[outArg + 1] ? path.resolve(ROOT, process.argv[outArg + 1]) : ROOT;
+// 公開用フォルダにコピーしないもの（サーバーの処理 api/ は Vercel が別に扱います）
+const SKIP = new Set([".git", ".github", ".vercel", ".local-store", "node_modules", "public", "scripts", "api", "docs", "vercel.json", ".gitignore"]);
 const START = "<!-- SEO:START 自動生成（scripts/build-seo.js）。ここは直接編集せず、管理画面「検索・SNSの表示（SEO）」で変更してください -->";
 const END = "<!-- SEO:END -->";
 
@@ -168,7 +174,7 @@ function headBlock(page, content, base) {
 }
 
 function writePage(page, content, base) {
-  const file = path.join(ROOT, page.file);
+  const file = path.join(OUT, page.file);
   let html = fs.readFileSync(file, "utf8");
   const block = headBlock(page, content, base);
   const s = html.indexOf("  " + START), e = html.indexOf(END);
@@ -189,14 +195,28 @@ function writeSitemapAndRobots(base) {
     const today = todayJst();
     const urls = PAGES.filter((p) => !p.noindex).map((p) =>
       `  <url><loc>${esc(base + p.url)}</loc><lastmod>${today}</lastmod><changefreq>${p.key === "top" || p.key === "events" ? "weekly" : "monthly"}</changefreq><priority>${p.key === "top" ? "1.0" : p.key === "events" ? "0.9" : "0.6"}</priority></url>`);
-    fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`);
+    fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`);
     robots.push("", `Sitemap: ${base}/sitemap.xml`);
   }
-  fs.writeFileSync(path.join(ROOT, "robots.txt"), robots.join("\n") + "\n");
+  fs.writeFileSync(path.join(OUT, "robots.txt"), robots.join("\n") + "\n");
 }
 
 // ---------- 実行 ----------
+// サイトのファイルを公開用フォルダにコピー（失敗したときは公開を止める：壊れたサイトを出さないため）
+function copySite() {
+  fs.rmSync(OUT, { recursive: true, force: true });
+  fs.mkdirSync(OUT, { recursive: true });
+  for (const name of fs.readdirSync(ROOT)) {
+    if (SKIP.has(name)) continue;
+    fs.cpSync(path.join(ROOT, name), path.join(OUT, name), { recursive: true });
+  }
+}
+
 (function main() {
+  if (OUT !== ROOT) {
+    copySite();
+    console.log(`[build-seo] サイトを ${path.relative(ROOT, OUT)}/ にコピーしました`);
+  }
   let content = {};
   try {
     content = JSON.parse(fs.readFileSync(path.join(ROOT, "content/site.json"), "utf8"));

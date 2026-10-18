@@ -1,5 +1,6 @@
 {
-  "buildCommand": "node scripts/build-seo.js",
+  "buildCommand": "node scripts/build-seo.js --out public",
+  "outputDirectory": "public",
   "headers": [
     {
       "source": "/content/(.*)",
