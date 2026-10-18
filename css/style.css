@@ -1868,21 +1868,21 @@ img { display: block; max-width: 100%; }
   background: #e9eef4;
 }
 .sponsor-banner img { width: 100%; height: 100%; object-fit: cover; }
-/* 縦書きの見出し（参考デザインのように中央に） */
+/* 見出し（写真の中央に横書きで） */
 .sponsor-banner-title {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  max-width: calc(100% - 32px);
   margin: 0;
-  padding: 22px 14px;
-  writing-mode: vertical-rl;
+  padding: 14px 36px;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: calc(clamp(18px, 2.4vw, 32px) * var(--fs-heading));
   letter-spacing: .2em;
   line-height: 1.2;
-  white-space: nowrap; /* 1列に収める */
+  white-space: nowrap; /* 1行に収める */
   color: var(--navy);
   background: rgba(255, 255, 255, .78);
   border-radius: 999px;

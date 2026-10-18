@@ -313,8 +313,8 @@
         {
           title: "一番上のバナー",
           fields: [
-            S.image("sponsors.banner", "バナーの写真", "横長の写真がおすすめです。中央に縦書きの見出しが重なります。", { maxSize: 2000 }),
-            S.text("sponsors.bannerTitle", "縦書きの見出し", "例：スポンサー企業（短い言葉がおすすめです）")
+            S.image("sponsors.banner", "バナーの写真", "横長の写真がおすすめです。中央に見出しが重なります。", { maxSize: 2000 }),
+            S.text("sponsors.bannerTitle", "バナーの見出し", "例：スポンサー企業（1行に収まる短い言葉がおすすめです）")
           ]
         },
         {
