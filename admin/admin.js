@@ -345,6 +345,43 @@
       ]
     },
 
+    seo: {
+      group: "設定", title: "検索・SNSの表示（SEO）", view: "../index.html",
+      lead: "Googleの検索結果や、LINE・Instagram・FacebookでURLを送ったときに表示される内容です。保存すると、1〜2分でサイトに反映されます。イベントの開催日・場所・参加費は、イベントを登録すると自動でGoogle向けに書き込まれます。",
+      keywords: "SEO 検索 グーグル Google タイトル 説明文 ディスクリプション OGP シェア LINE 画像 ドメイン URL",
+      sections: [
+        {
+          title: "サイト全体",
+          fields: [
+            { type: "url", key: "settings.siteUrl", label: "サイトのURL（独自ドメイン）", help: "例：https://lifeshift-fuk.jp　独自ドメインを取得したら入力してください。空のままでも、Vercelの公開URLが自動で使われます。" },
+            S.text("seo.siteName", "サイト名", "例：Life Shift FUK"),
+            S.image("seo.image", "シェアしたときの画像（共通）", "LINEなどでURLを送ったときに表示される画像です。横長（1200×630くらい）がおすすめです。空のときはトップの大きい写真が使われます。", { maxSize: 1600 })
+          ]
+        },
+        ...[
+          ["top", "トップページ"],
+["about", "Life Shift FUKとは"],
+["events", "イベント一覧"],
+["reserve", "イベント予約（検索結果には表示されません）"],
+["faq", "よくある質問"],
+["members", "運営メンバー"],
+["sponsors", "スポンサー企業"],
+["connection", "テーマ：人脈"],
+["health", "テーマ：健康"],
+["beauty", "テーマ：美容"],
+["money", "テーマ：お金"],
+["social-good", "テーマ：社会貢献"]
+        ].map(([key, name]) => ({
+          title: name,
+          fields: [
+            S.text(`seo.pages.${key}.title`, "タイトル", "検索結果の青い見出しになります。30文字前後がおすすめです。", { search: name }),
+            S.area(`seo.pages.${key}.description`, "説明文", "検索結果のタイトルの下に表示されます。「福岡」「交流会」など探してほしい言葉を入れて、80〜120文字くらいがおすすめです。", { rows: 3, search: name }),
+            S.image(`seo.pages.${key}.image`, "このページだけのシェア画像（任意）", "空のときは「シェアしたときの画像（共通）」が使われます。", { maxSize: 1600, search: name })
+          ]
+        }))
+      ]
+    },
+
     logo: {
       group: "設定", title: "ロゴ", view: "../index.html",
       lead: "すべてのページの左上（ヘッダー）と、一番下（フッター）に表示されるロゴです。",
@@ -413,7 +450,7 @@
   }
 
   // 「設定」はメニューの一番下に
-  for (const id of ["logo", "design", "settings"]) {
+  for (const id of ["logo", "seo", "design", "settings"]) {
     const sc = SCREENS[id];
     delete SCREENS[id];
     SCREENS[id] = sc;
@@ -483,7 +520,12 @@
   }
 
   function renderImage(def, path, id, help) {
-    const img = h("img", { class: "image-preview" + (def.round ? " image-preview--round" : ""), src: imageUrl(getAt(path)), alt: "" });
+    const current = imageUrl(getAt(path));
+    // 写真が未設定のときは透明な画像を入れて「未設定」と表示する（壊れた画像アイコンを出さない）
+    const img = h("img", {
+      class: "image-preview" + (def.round ? " image-preview--round" : "") + (current ? "" : " is-empty"),
+      src: current || "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", alt: ""
+    });
     const status = h("p", { class: "image-status", "aria-live": "polite" });
     const file = h("input", {
       id, type: "file", accept: "image/*", hidden: true,
@@ -499,6 +541,7 @@
           state.previews[uploaded] = dataUrl;
           setAt(path, uploaded);
           img.src = dataUrl;
+          img.classList.remove("is-empty");
           status.textContent = "写真を変更しました。最後に「保存する」を押してください。";
         } catch (err) {
           status.textContent = "";

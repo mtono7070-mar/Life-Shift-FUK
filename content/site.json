@@ -2,7 +2,8 @@
   "settings": {
     "lineUrl": "https://lin.ee/Sg5S7Pw",
     "instagramUrl": "https://www.instagram.com/life_shift_fukuoka/",
-    "logo": "assets/images/logo.png"
+    "logo": "assets/images/logo.png",
+    "siteUrl": ""
   },
   "home": {
     "hero": {
@@ -455,5 +456,71 @@
     "lead": "Life Shift FUKの活動は、想いに共感してくださる企業の皆さまに支えられています。\nここでは、スポンサー企業の皆さまをご紹介します。",
     "empty": "現在、スポンサー企業を募集しています。ご興味のある企業さまは、公式LINEからお気軽にお問い合わせください。",
     "list": []
+  },
+  "seo": {
+    "siteName": "Life Shift FUK",
+    "image": "",
+    "pages": {
+      "top": {
+        "title": "Life Shift FUK｜出会いで、これからの未来をつくる。",
+        "description": "福岡で新しい人・新しい経験・新しい自分に出会えるコミュニティ「Life Shift FUK」。20代〜60代の男女が参加する交流会・食事会・ウォーキング・BBQ・勉強会などのイベントを開催しています。おひとりでの参加も大歓迎です。",
+        "image": ""
+      },
+      "about": {
+        "title": "Life Shift FUKとは｜Life Shift FUK",
+        "description": "Life Shift FUKは、人生に少し動き出すきっかけをつくる福岡のコミュニティです。想い、大切にしていること、参加の流れをご紹介します。",
+        "image": ""
+      },
+      "events": {
+        "title": "イベント一覧｜Life Shift FUK",
+        "description": "Life Shift FUKの開催予定イベント一覧。福岡で開催する交流会・食事会・ウォーキング・BBQ・勉強会など、初めての方やおひとりでも参加しやすいイベントをご案内します。",
+        "image": ""
+      },
+      "reserve": {
+        "title": "イベント予約｜Life Shift FUK",
+        "description": "Life Shift FUKのイベント予約フォーム。",
+        "image": ""
+      },
+      "faq": {
+        "title": "よくある質問｜Life Shift FUK",
+        "description": "Life Shift FUKによく寄せられる質問と回答。",
+        "image": ""
+      },
+      "members": {
+        "title": "運営メンバー｜Life Shift FUK",
+        "description": "Life Shift FUK 運営メンバーより、代表メッセージをお届けします。",
+        "image": ""
+      },
+      "sponsors": {
+        "title": "スポンサー企業｜Life Shift FUK",
+        "description": "Life Shift FUKの活動を応援してくださるスポンサー企業のご紹介。",
+        "image": ""
+      },
+      "connection": {
+        "title": "人脈（Connection）｜Life Shift FUK",
+        "description": "Life Shift FUKの5つのテーマ「人脈」。普段の生活では出会えない人と、つながる。",
+        "image": ""
+      },
+      "health": {
+        "title": "健康（Health）｜Life Shift FUK",
+        "description": "Life Shift FUKの5つのテーマ「健康」。心と身体の健康で、人生をもっと楽しく。",
+        "image": ""
+      },
+      "beauty": {
+        "title": "美容（Beauty）｜Life Shift FUK",
+        "description": "Life Shift FUKの5つのテーマ「美容」。自分磨きを通して、もっと自分を好きになる。",
+        "image": ""
+      },
+      "money": {
+        "title": "お金（Money）｜Life Shift FUK",
+        "description": "Life Shift FUKの5つのテーマ「お金」。これからの人生に必要なお金について、学ぶ。",
+        "image": ""
+      },
+      "social-good": {
+        "title": "社会貢献（Social Good）｜Life Shift FUK",
+        "description": "Life Shift FUKの5つのテーマ「社会貢献」。地域や誰かのために、できることを。",
+        "image": ""
+      }
+    }
   }
 }
