@@ -271,12 +271,44 @@
     "pages/members": {
       group: "ページの文章・写真", title: "運営メンバー", view: "../members.html",
       lead: "フッターの「運営メンバー」から開くページです（トップページやヘッダーのメニューには表示されません）。",
+      keywords: "メンバー紹介 スタッフ 運営",
       sections: [{
         title: "代表メッセージ",
         fields: [
           S.area("members.message", "メッセージ", "段落を分けたいときは、1行あけてください。「 」だけの段落は、色付きの帯で強調して表示されます。", { rows: 18 }),
           S.text("members.sign", "署名", "例：代表　山田大輝"),
           S.image("members.messageLogo", "メッセージ下のロゴ", "背景が透明なPNG画像がおすすめです。", { maxSize: 1000, keepPng: true })
+        ]
+      }, {
+        title: "メンバー紹介",
+        note: "代表メッセージの下に、メンバーのカードが並びます。空の項目はサイトに表示されません。",
+        fields: [
+          S.text("members.teamTitle", "見出し", "例：運営メンバー紹介"),
+          S.area("members.teamLead", "見出しの下の文章", BR_HELP, { rows: 2 }),
+          {
+            type: "list", key: "members.team", addLabel: "＋ メンバーを追加", movable: true,
+            newItem: () => ({ name: "", image: "assets/images/members/member-placeholder.svg", area: "", role: "", work: "", links: [] }),
+            itemTitle: (it) => it.name || "（名前未入力）",
+            itemSub: (it) => it.role,
+            thumb: (it) => it.image || "assets/images/members/member-placeholder.svg",
+            fields: [
+              S.text("name", "名前", "例：山田 太郎（ヤマダタロウ）"),
+              S.image("image", "顔写真", "丸く切り抜いて表示されます。正方形に近い写真がおすすめです。", { round: true, maxSize: 600 }),
+              S.text("area", "【拠点】", "例：福岡"),
+              S.text("role", "【Life Shift FUK担当】", "例：イベント企画・広報"),
+              S.area("work", "【お仕事・活動内容】", BR_HELP, { rows: 4 }),
+              {
+                type: "list", key: "links", addLabel: "＋ リンクを追加", movable: true,
+                newItem: () => ({ label: "", url: "" }),
+                itemTitle: (it) => it.label || "（表示名未入力）",
+                itemSub: (it) => it.url,
+                fields: [
+                  S.text("label", "表示名", "例：Instagram、ホームページ"),
+                  { type: "url", key: "url", label: "URL", help: "https:// から始まるURL" }
+                ]
+              }
+            ]
+          }
         ]
       }]
     },

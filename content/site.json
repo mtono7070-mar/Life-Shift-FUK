@@ -426,6 +426,62 @@
   "members": {
     "message": "私たちのミッションは、\n\n「福岡で一番、人と人が繋がり人生が豊かになる福岡最大規模のコミュニティを創ること」\n\nです。\n\nそして、\n\n「人脈・美容・健康・お金・社会貢献を通じて人生の可能性を広げる」\n\nというビジョンのもと、多くの方にとって人生がより豊かになるきっかけを提供していきます。\n\nイベントや交流会、勉強会、ボランティア活動などを通じて、一人でも多くの方とお会いできることを楽しみにしています。\n\n人生を変えるきっかけは、\nいつも”人との出会い”から。\n\nぜひ一緒に、新しい未来を創っていきましょう。",
     "sign": "代表　山田大輝",
-    "messageLogo": "assets/images/logo.png"
+    "messageLogo": "assets/images/logo.png",
+    "teamTitle": "運営メンバー紹介",
+    "teamLead": "Life Shift FUKは、さまざまな仕事や想いを持ったメンバーで運営しています。",
+    "team": [
+      {
+        "name": "メンバー名（1）",
+        "image": "assets/images/members/member-placeholder.svg",
+        "area": "福岡",
+        "role": "イベント企画・運営",
+        "work": "お仕事や活動内容をここに入力します。",
+        "links": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/life_shift_fukuoka/"
+          }
+        ]
+      },
+      {
+        "name": "メンバー名（2）",
+        "image": "assets/images/members/member-placeholder.svg",
+        "area": "福岡",
+        "role": "イベント企画・運営",
+        "work": "お仕事や活動内容をここに入力します。",
+        "links": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/life_shift_fukuoka/"
+          }
+        ]
+      },
+      {
+        "name": "メンバー名（3）",
+        "image": "assets/images/members/member-placeholder.svg",
+        "area": "福岡",
+        "role": "イベント企画・運営",
+        "work": "お仕事や活動内容をここに入力します。",
+        "links": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/life_shift_fukuoka/"
+          }
+        ]
+      },
+      {
+        "name": "メンバー名（4）",
+        "image": "assets/images/members/member-placeholder.svg",
+        "area": "福岡",
+        "role": "イベント企画・運営",
+        "work": "お仕事や活動内容をここに入力します。",
+        "links": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/life_shift_fukuoka/"
+          }
+        ]
+      }
+    ]
   }
 }

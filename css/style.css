@@ -1766,3 +1766,58 @@ img { display: block; max-width: 100%; }
 }
 
 .members-page .page-section { padding-top: clamp(20px, 3vw, 36px); padding-bottom: clamp(20px, 3vw, 36px); }
+
+/* ---------- 運営メンバー紹介 ---------- */
+.members-team { --t-color: #6f9fd8; }
+.members-team:has(.team-list:empty) { display: none; } /* メンバーが0人のときは表示しない */
+.members-team .theme-h2 { margin-bottom: 14px; }
+.members-team-lead {
+  margin: 0 0 28px;
+  font-family: var(--font-heading);
+  font-size: calc(clamp(15px, 1.4vw, 17px) * var(--fs-body));
+  line-height: 1.9;
+  color: #333;
+}
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.team-card {
+  min-width: 0;
+  padding: clamp(20px, 2.4vw, 28px) clamp(14px, 2vw, 24px) 24px;
+  background: #eef4fc;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+.team-photo {
+  display: block;
+  width: min(150px, 72%);
+  aspect-ratio: 1;
+  margin: 0 auto 14px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #dfe8f4;
+}
+.team-name {
+  margin: 0 0 18px;
+  font-size: calc(clamp(15px, 1.4vw, 17px) * var(--fs-body));
+  font-weight: 700;
+  text-align: center;
+  color: var(--ink);
+}
+.team-item { margin-top: 14px; }
+.team-item p { margin: 0; font-size: calc(14px * var(--fs-body)); font-weight: 500; line-height: 1.75; color: #333; }
+.team-item .team-label { font-weight: 700; color: var(--navy); }
+.team-links { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.team-links a { font-weight: 700; color: var(--navy); text-decoration: underline; text-underline-offset: 4px; }
+.team-links a:hover { color: var(--gold-dark); }
+
+@media (max-width: 520px) {
+  .team-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .team-card { padding: 16px 10px 18px; }
+  .team-item p { font-size: calc(12.5px * var(--fs-body)); }
+}
