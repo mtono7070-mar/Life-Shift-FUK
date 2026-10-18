@@ -1780,7 +1780,9 @@ img { display: block; max-width: 100%; }
 }
 .team-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  /* 人数が少なくても中央にそろえて並べる */
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 260px));
+  justify-content: center;
   gap: clamp(12px, 2vw, 24px);
   margin: 0;
   padding: 0;
@@ -1789,8 +1791,11 @@ img { display: block; max-width: 100%; }
 .team-card {
   min-width: 0;
   padding: clamp(20px, 2.4vw, 28px) clamp(14px, 2vw, 24px) 24px;
-  background: #eef4fc;
-  border-radius: 6px;
+  /* 「大切にしていること」のカードと同じ、白地に薄いグレーの枠 */
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .05);
   overflow-wrap: anywhere;
 }
 .team-photo {
