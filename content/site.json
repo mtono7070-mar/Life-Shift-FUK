@@ -1,7 +1,8 @@
 {
   "settings": {
     "lineUrl": "https://lin.ee/Sg5S7Pw",
-    "instagramUrl": "https://www.instagram.com/life_shift_fukuoka/"
+    "instagramUrl": "https://www.instagram.com/life_shift_fukuoka/",
+    "logo": "assets/images/logo.png"
   },
   "home": {
     "hero": {
@@ -87,7 +88,8 @@
       }
     ],
     "message": "「新しい出会いがほしい」「何か始めたい」。そう思っていても、ひとりで一歩を踏み出すのは勇気がいるものです。\n\nLife Shift FUKは、そんな気持ちにそっと寄り添える場所でありたいと思っています。ここでの出会いが、あなたの毎日を少し明るくするきっかけになればうれしいです。福岡でお会いできるのを楽しみにしています。",
-    "messageSign": "Life Shift FUK 運営チーム"
+    "messageSign": "Life Shift FUK 運営チーム",
+    "messageLogo": "assets/images/logo-circle.jpg"
   },
   "themes": {
     "connection": {
@@ -418,6 +420,7 @@
   },
   "members": {
     "message": "私たちのミッションは、\n\n「福岡で一番、人と人が繋がり人生が豊かになる福岡最大規模のコミュニティを創ること」\n\nです。\n\nそして、\n\n「人脈・美容・健康・お金・社会貢献を通じて人生の可能性を広げる」\n\nというビジョンのもと、多くの方にとって人生がより豊かになるきっかけを提供していきます。\n\nイベントや交流会、勉強会、ボランティア活動などを通じて、一人でも多くの方とお会いできることを楽しみにしています。\n\n人生を変えるきっかけは、\nいつも”人との出会い”から。\n\nぜひ一緒に、新しい未来を創っていきましょう。",
-    "sign": "代表　山田大輝"
+    "sign": "代表　山田大輝",
+    "messageLogo": "assets/images/logo.png"
   }
 }

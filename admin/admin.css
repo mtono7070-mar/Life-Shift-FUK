@@ -176,6 +176,58 @@ img { max-width: 100%; }
 .nav-icon { width: 22px; text-align: center; }
 .nav-sub a { padding-left: 44px; font-size: 15px; }
 
+/* ---------- 検索 ---------- */
+.search { position: relative; margin-bottom: 20px; }
+.search-label { display: block; margin: 0 10px 6px; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--muted); }
+.search-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px 10px 40px;
+  font: inherit;
+  font-size: 16px;
+  color: var(--text);
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") no-repeat 13px center / 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+}
+.search-input:focus { outline: none; border-color: var(--navy-soft); box-shadow: 0 0 0 3px rgba(44, 79, 134, .18); }
+.search-help { margin: 6px 10px 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.search-results {
+  margin: 8px 0 0;
+  padding: 6px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.search-result {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.search-result:hover, .search-result:focus { outline: none; background: #e6eaf1; }
+.search-result-title { display: block; font-weight: 700; line-height: 1.4; }
+.search-result-where { display: block; margin-top: 2px; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.search-empty { padding: 10px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.search-button { display: none; }
+
+/* 検索で移動した場所を一時的に光らせる */
+.is-found { animation: found 2.6s ease-out; border-radius: 12px; }
+@keyframes found {
+  0%, 30% { box-shadow: 0 0 0 4px rgba(212, 166, 74, .85); background-color: #fff8e6; }
+  100% { box-shadow: 0 0 0 4px rgba(212, 166, 74, 0); }
+}
+
 /* ---------- メイン ---------- */
 .main { grid-area: main; padding: 28px clamp(16px, 3vw, 40px) 40px; outline: none; }
 .screen { max-width: 860px; }
@@ -484,6 +536,21 @@ input[type="date"] { max-width: 240px; }
   .topbar { padding: 8px 12px; gap: 10px; }
   .topbar-brand span { display: none; }
   .topbar-brand img { height: 34px; }
+
+  .search-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 44px;
+    padding: 6px 12px;
+    font: inherit;
+    font-weight: 700;
+    color: var(--navy);
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+  }
   .topbar-actions .button { min-height: 40px; padding: 6px 10px; font-size: 14px; }
 
   .topbar { z-index: 60; }
@@ -513,10 +580,12 @@ input[type="date"] { max-width: 240px; }
 
 @media (max-width: 520px) {
   .topbar-actions #logout { display: none; }
+  .topbar-brand { display: none; }
   .image-preview { width: 100%; }
   .item-thumb { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .is-found { animation: none; box-shadow: 0 0 0 4px rgba(212, 166, 74, .85); }
   * { transition: none !important; }
 }

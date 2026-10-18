@@ -23,6 +23,7 @@
 
   /* ---------- 道具 ---------- */
   const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => Array.from(document.querySelectorAll(sel));
   const clone = (v) => JSON.parse(JSON.stringify(v));
 
   // 要素を作る小さな関数（文字は textContent で入れるので安全）
@@ -104,7 +105,7 @@
   const BR_HELP = "改行した位置で、サイトでも改行されます。";
 
   const SCREENS = {
-    home: { group: "はじめに", title: "使い方", render: renderHome },
+    home: { group: "はじめに", title: "使い方", render: renderHome, keywords: "ヘルプ 説明 はじめに" },
 
     events: {
       group: "よく更新するもの", title: "イベント", view: "../events/index.html",
@@ -141,6 +142,7 @@
     gallery: {
       group: "よく更新するもの", title: "ギャラリー写真", view: "../index.html#activities",
       lead: "トップページの「Life Shiftの日常」に並ぶ8枚の写真です。",
+      keywords: "写真 画像 Life Shiftの日常 活動紹介 Instagram 8枚",
       render: renderGallery
     },
 
@@ -259,7 +261,8 @@
           title: "運営メッセージ",
           fields: [
             S.area("about.message", "メッセージ", "段落を分けたいときは、1行あけてください。", { rows: 7 }),
-            S.text("about.messageSign", "署名", "例：Life Shift FUK 運営チーム")
+            S.text("about.messageSign", "署名", "例：Life Shift FUK 運営チーム"),
+            S.image("about.messageLogo", "メッセージ横のロゴ", "正方形の画像がおすすめです（スマホでは文章の上に表示されます）。", { maxSize: 800, keepPng: true })
           ]
         }
       ]
@@ -272,7 +275,19 @@
         title: "代表メッセージ",
         fields: [
           S.area("members.message", "メッセージ", "段落を分けたいときは、1行あけてください。「 」だけの段落は、色付きの帯で強調して表示されます。", { rows: 18 }),
-          S.text("members.sign", "署名", "例：代表　山田大輝")
+          S.text("members.sign", "署名", "例：代表　山田大輝"),
+          S.image("members.messageLogo", "メッセージ下のロゴ", "背景が透明なPNG画像がおすすめです。", { maxSize: 1000, keepPng: true })
+        ]
+      }]
+    },
+
+    logo: {
+      group: "設定", title: "ロゴ", view: "../index.html",
+      lead: "すべてのページの左上（ヘッダー）と、一番下（フッター）に表示されるロゴです。",
+      sections: [{
+        title: "サイトのロゴ",
+        fields: [
+          S.image("settings.logo", "ロゴ画像", "横長で、背景が透明なPNG画像がおすすめです。運営メッセージのロゴは「Life Shift FUKとは」「運営メンバー」の画面で変更できます。", { maxSize: 1000, keepPng: true, search: "ヘッダー フッター マーク" })
         ]
       }]
     },
@@ -280,6 +295,7 @@
     design: {
       group: "設定", title: "フォント・文字の大きさ", view: "../index.html",
       lead: "サイト全体の文字の書体（フォント）と大きさを変えられます。選ぶと下の「見本」がすぐに変わります。",
+      keywords: "フォント 書体 文字 大きさ サイズ 見出し 本文",
       render: renderDesign
     },
 
@@ -333,7 +349,7 @@
   }
 
   // 「設定」はメニューの一番下に
-  for (const id of ["design", "settings"]) {
+  for (const id of ["logo", "design", "settings"]) {
     const sc = SCREENS[id];
     delete SCREENS[id];
     SCREENS[id] = sc;
@@ -341,7 +357,7 @@
 
   /* ---------- サイドメニュー ---------- */
   function renderNav() {
-    const nav = $("#sidebar");
+    const nav = $("#nav-menu");
     nav.replaceChildren();
     const groups = {};
     for (const [id, sc] of Object.entries(SCREENS)) (groups[sc.group] = groups[sc.group] || []).push([id, sc]);
@@ -413,7 +429,7 @@
         if (!f) return;
         status.textContent = "写真を準備しています…";
         try {
-          const dataUrl = await resizeImage(f, def.maxSize || 1600);
+          const dataUrl = await resizeImage(f, def.maxSize || 1600, def.keepPng);
           status.textContent = "アップロードしています…";
           const { path: uploaded } = await api("/upload", { method: "POST", body: JSON.stringify({ data: dataUrl }) });
           state.previews[uploaded] = dataUrl;
@@ -435,7 +451,8 @@
   }
 
   // 写真を縮小してJPEGにする（スマホの大きな写真もそのまま選べるように）
-  function resizeImage(file, maxSize) {
+  // keepPng のとき（ロゴなど）は、PNG・WebPの透明な背景を残してPNGのまま縮小する
+  function resizeImage(file, maxSize, keepPng) {
     return new Promise((resolve, reject) => {
       if (!/^image\//.test(file.type)) return reject(new Error("写真（画像ファイル）を選んでください"));
       const url = URL.createObjectURL(file);
@@ -446,11 +463,14 @@
         canvas.width = Math.round(img.naturalWidth * scale);
         canvas.height = Math.round(img.naturalHeight * scale);
         const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#fff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const transparent = keepPng && /^image\/(png|webp)$/.test(file.type);
+        if (!transparent) {
+          ctx.fillStyle = "#fff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         URL.revokeObjectURL(url);
-        resolve(canvas.toDataURL("image/jpeg", 0.85));
+        resolve(transparent ? canvas.toDataURL("image/png") : canvas.toDataURL("image/jpeg", 0.85));
       };
       img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("この写真は読み込めませんでした。JPEGかPNGの写真を選んでください。")); };
       img.src = url;
@@ -567,10 +587,14 @@
   }
 
   function renderSections(sc) {
-    return sc.sections.map((sec) => h("section", { class: "card" },
+    return sc.sections.map((sec, i) => h("section", { class: "card", "data-sec": i },
       h("h2", { text: sec.title }),
       sec.note ? h("p", { class: "card-note", text: sec.note }) : null,
-      sec.fields.map((f) => renderField(f))));
+      sec.fields.map((f) => {
+        const el = renderField(f);
+        if (el && f.key) el.setAttribute("data-key", f.key); // 検索から移動するときの目印
+        return el;
+      })));
   }
 
   function renderHome(sc) {
@@ -580,6 +604,7 @@
       ["voices", "参加者の声", "感想と写真"],
       ["faq", "よくある質問", "質問と回答"],
       ["pages/top", "トップページ", "見出し・文章・写真"],
+      ["logo", "ロゴ", "ヘッダー・フッターのロゴ"],
       ["design", "フォント・文字の大きさ", "書体と大きさの変更"],
       ["settings", "LINE・Instagram", "リンク先の変更"]
     ];
@@ -589,7 +614,7 @@
       h("section", { class: "card" },
         h("h2", { text: "変更のしかた" }),
         h("ol", { class: "steps" },
-          h("li", null, h("span", { class: "step-num", text: "1" }), h("strong", { text: "場所を選ぶ" }), "左のメニュー（スマホは左上の「メニュー」）から、変更したい場所を選びます。"),
+          h("li", null, h("span", { class: "step-num", text: "1" }), h("strong", { text: "場所を選ぶ" }), "左のメニュー（スマホは左上の「メニュー」）から、変更したい場所を選びます。メニューの一番上の検索欄（スマホは「探す」）に「運営メッセージ」「写真」などと入れて探すこともできます。"),
           h("li", null, h("span", { class: "step-num", text: "2" }), h("strong", { text: "文章や写真を変える" }), "文章は入力欄を直接書き換えます。写真は「写真を変える」を押して選びます。"),
           h("li", null, h("span", { class: "step-num", text: "3" }), h("strong", { text: "「保存する」を押す" }), "画面の一番下にあるボタンです。1〜2分ほどでサイトに反映されます。")
         )),
@@ -722,6 +747,93 @@
     $("#app").classList.remove("is-menu-open");
     $("#menu-button").setAttribute("aria-expanded", "false");
     $("#main").focus({ preventScroll: true });
+    if (pendingReveal) requestAnimationFrame(reveal);
+  }
+
+  /* ---------- 検索 ---------- */
+  // ひらがな・カタカナ、全角・半角、大文字・小文字の違いを気にせず探せるようにそろえる
+  const norm = (s) => String(s || "").normalize("NFKC").toLowerCase()
+    .replace(/[\u30a1-\u30f6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60))
+    .replace(/\s+/g, " ");
+  const IMAGE_WORDS = "写真 画像 イメージ";
+
+  // 画面・コーナー・入力欄の名前や説明から、探すための一覧を作る
+  let searchIndex = null;
+  function buildIndex() {
+    const out = [];
+    for (const [id, sc] of Object.entries(SCREENS)) {
+      const screenName = sc.sub ? `5つのテーマ：${sc.title}` : sc.title;
+      out.push({ id, title: screenName, where: sc.group, text: [sc.title, sc.lead, sc.keywords].join(" "), rank: 3 });
+      (sc.sections || []).forEach((sec, si) => {
+        const secEntry = { id, sec: si, title: sec.title, where: screenName, text: [sec.title, sec.note].join(" "), rank: 2 };
+        out.push(secEntry);
+        for (const f of sec.fields) {
+          const words = [f.label, f.help, f.search, f.type === "image" ? IMAGE_WORDS : "",
+            ...(f.fields || []).map((x) => [x.label, x.type === "image" ? IMAGE_WORDS : ""].join(" "))].join(" ");
+          // 見出しのないリスト（イベント一覧など）は、コーナーの検索語に含める
+          if (!f.label) { secEntry.text += " " + words; continue; }
+          // コーナー名（context）は絞り込み用。「運営メッセージ 署名」のように組み合わせて探せる
+          out.push({ id, sec: si, key: f.key, title: f.label, where: `${screenName} › ${sec.title}`, text: words, context: sec.title, rank: 1 });
+        }
+      });
+    }
+    for (const e of out) {
+      e.normOwn = norm(e.text + " " + e.title);
+      e.norm = norm(e.normOwn + " " + (e.context || ""));
+      e.normTitle = norm(e.title);
+    }
+    return out;
+  }
+
+  function search(q) {
+    const terms = norm(q).split(" ").filter(Boolean);
+    if (!terms.length) return [];
+    searchIndex = searchIndex || buildIndex();
+    return searchIndex
+      .filter((e) => terms.every((t) => e.norm.includes(t)) && terms.some((t) => e.normOwn.includes(t)))
+      .map((e) => ({ e, score: (terms.every((t) => e.normTitle.includes(t)) ? 10 : 0) + e.rank }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 40)
+      .map((r) => r.e);
+  }
+
+  function renderResults() {
+    const q = $("#search-input").value;
+    const box = $("#search-results");
+    if (!q.trim()) { box.hidden = true; box.replaceChildren(); return; }
+    const results = search(q);
+    box.hidden = false;
+    box.replaceChildren(...(results.length
+      ? results.map((e) => h("li", null, h("button", { type: "button", class: "search-result", onclick: () => goTo(e) },
+          h("span", { class: "search-result-title", text: e.title }),
+          h("span", { class: "search-result-where", text: e.where }))))
+      : [h("li", { class: "search-empty", text: "見つかりませんでした。別の言葉で試してください（例：写真、ロゴ、イベント）。" })]));
+  }
+
+  // 選んだ場所へ移動して、目立たせる
+  let pendingReveal = null;
+  function goTo(e) {
+    pendingReveal = e;
+    $("#search-input").value = "";
+    renderResults();
+    if (state.screen === e.id) route();
+    else location.hash = "#" + e.id;
+  }
+
+  function reveal() {
+    const t = pendingReveal;
+    pendingReveal = null;
+    if (!t) return;
+    const el = (t.key && $(`#main [data-key="${CSS.escape(t.key)}"]`)) ||
+      (t.sec != null && $(`#main [data-sec="${t.sec}"]`));
+    if (!el) return;
+    el.scrollIntoView({ block: "center", behavior: "smooth" });
+    el.classList.remove("is-found");
+    void el.offsetWidth; // 同じ場所を続けて選んでも光るように
+    el.classList.add("is-found");
+    setTimeout(() => el.classList.remove("is-found"), 2600);
+    const input = el.querySelector("input:not([type=file]), textarea, button");
+    if (input) input.focus({ preventScroll: true });
   }
 
   /* ---------- 保存 ---------- */
@@ -816,6 +928,26 @@
   $("#save").addEventListener("click", save);
   $("#discard").addEventListener("click", discard);
   $("#logout").addEventListener("click", logout);
+  $("#search-input").addEventListener("input", renderResults);
+  $("#search-input").addEventListener("keydown", (e) => {
+    const first = $("#search-results .search-result");
+    if (e.key === "Enter" && first) { e.preventDefault(); first.click(); }
+    else if (e.key === "ArrowDown" && first) { e.preventDefault(); first.focus(); }
+    else if (e.key === "Escape") { e.target.value = ""; renderResults(); }
+  });
+  $("#search-results").addEventListener("keydown", (e) => {
+    const items = $$("#search-results .search-result");
+    const i = items.indexOf(document.activeElement);
+    if (i < 0) return;
+    if (e.key === "ArrowDown" && items[i + 1]) { e.preventDefault(); items[i + 1].focus(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); (items[i - 1] || $("#search-input")).focus(); }
+  });
+  // スマホ：「探す」でメニューを開いて検索欄へ
+  $("#search-button").addEventListener("click", () => {
+    $("#app").classList.add("is-menu-open");
+    $("#menu-button").setAttribute("aria-expanded", "true");
+    $("#search-input").focus();
+  });
   $("#menu-button").addEventListener("click", () => {
     const open = $("#app").classList.toggle("is-menu-open");
     $("#menu-button").setAttribute("aria-expanded", open);

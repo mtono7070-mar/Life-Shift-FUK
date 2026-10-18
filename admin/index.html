@@ -33,6 +33,9 @@
       <button type="button" class="menu-button" id="menu-button" aria-controls="sidebar" aria-expanded="false">
         <span aria-hidden="true">☰</span> メニュー
       </button>
+      <button type="button" class="search-button" id="search-button" aria-controls="sidebar">
+        <span aria-hidden="true">🔍</span> 探す
+      </button>
       <a href="#home" class="topbar-brand">
         <img src="../assets/images/logo.png" alt="">
         <span>管理画面</span>
@@ -43,7 +46,16 @@
       </div>
     </header>
 
-    <nav class="sidebar" id="sidebar" aria-label="管理メニュー"></nav>
+    <nav class="sidebar" id="sidebar" aria-label="管理メニュー">
+      <!-- 検索：変更したい場所の名前で探して、その場所へ移動します -->
+      <div class="search" role="search">
+        <label for="search-input" class="search-label">変更したい場所を探す</label>
+        <input id="search-input" class="search-input" type="search" placeholder="例：運営メッセージ、ロゴ、写真" autocomplete="off" aria-controls="search-results" aria-describedby="search-help">
+        <p class="search-help" id="search-help">ページ名・項目名・「写真」などの言葉で探せます。</p>
+        <ul class="search-results" id="search-results" aria-label="検索結果" hidden></ul>
+      </div>
+      <div id="nav-menu"></div>
+    </nav>
 
     <main class="main" id="main" tabindex="-1"></main>
 
