@@ -1077,8 +1077,8 @@ img { display: block; max-width: 100%; }
   align-items: flex-start;
   gap: 14px;
   padding: 20px 18px;
-  background: #fffdd0; /* クリーム色 */
-  border: 1px solid #f1eab0;
+  background: #fff3cd; /* クリーム色 */
+  border: 1px solid #f0e0a8;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(30, 40, 70, .06);
 }
