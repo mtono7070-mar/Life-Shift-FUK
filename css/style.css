@@ -1065,7 +1065,7 @@ img { display: block; max-width: 100%; }
 /* ---------- 参加者の声 ---------- */
 .voice-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(12px, 1.5vw, 20px);
   margin: 0;
   padding: 0;
@@ -1092,7 +1092,9 @@ img { display: block; max-width: 100%; }
   border: 3px solid #f3f3f3;
 }
 
-.voice-catch { margin: 0 0 8px; font-size: calc(clamp(13px, 1.05vw, 15px) * var(--fs-heading)); white-space: nowrap; font-weight: 700; line-height: 1.6; color: var(--ink); }
+/* 文章を変更しても枠からはみ出さないよう、カードの幅で折り返す */
+.voice-card > div { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.voice-catch { margin: 0 0 8px; font-size: calc(clamp(13px, 1.05vw, 15px) * var(--fs-heading)); font-weight: 700; line-height: 1.6; color: var(--ink); }
 .voice-text { margin: 0 0 10px; font-size: calc(13px * var(--fs-body)); line-height: 1.75; color: #555; }
 .voice-meta { margin: 0; font-size: calc(12px * var(--fs-body)); font-weight: 700; color: #666; }
 
