@@ -454,19 +454,6 @@
     "title": "Life Shift FUKを応援してくださる企業",
     "lead": "Life Shift FUKの活動は、想いに共感してくださる企業の皆さまに支えられています。\nここでは、スポンサー企業の皆さまをご紹介します。",
     "empty": "現在、スポンサー企業を募集しています。ご興味のある企業さまは、公式LINEからお気軽にお問い合わせください。",
-    "list": [
-      {
-        "name": "スポンサー企業名（1）",
-        "logo": "assets/images/sponsors/logo-placeholder.svg",
-        "text": "企業の紹介文をここに入力します。",
-        "url": ""
-      },
-      {
-        "name": "スポンサー企業名（2）",
-        "logo": "assets/images/sponsors/logo-placeholder.svg",
-        "text": "企業の紹介文をここに入力します。",
-        "url": ""
-      }
-    ]
+    "list": []
   }
 }
