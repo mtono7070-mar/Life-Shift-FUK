@@ -140,9 +140,9 @@
     },
 
     gallery: {
-      group: "よく更新するもの", title: "ギャラリー写真", view: "../index.html#activities",
-      lead: "トップページの「Life Shiftの日常」に並ぶ8枚の写真です。",
-      keywords: "写真 画像 Life Shiftの日常 活動紹介 Instagram 8枚",
+      group: "よく更新するもの", title: "ギャラリー（動画・写真）", view: "../index.html#activities",
+      lead: "トップページの「Life Shiftの日常」の右側です。動画のURLを入れると動画が1本流れます。動画がないときは8枚の写真が並びます。",
+      keywords: "動画 ムービー YouTube ユーチューブ インスタ リール 写真 画像 Life Shiftの日常 活動紹介 Instagram 8枚",
       render: renderGallery
     },
 
@@ -600,7 +600,7 @@
   function renderHome(sc) {
     const shortcuts = [
       ["events", "イベント", "追加・変更・削除"],
-      ["gallery", "ギャラリー写真", "8枚の写真を差し替え"],
+      ["gallery", "ギャラリー", "動画・写真の差し替え"],
       ["voices", "参加者の声", "感想と写真"],
       ["faq", "よくある質問", "質問と回答"],
       ["pages/top", "トップページ", "見出し・文章・写真"],
@@ -713,9 +713,10 @@
     while (items.length < 8) items.push({ image: "", alt: "" });
     return [
       screenHead(sc),
+      renderGalleryVideo(),
       h("section", { class: "card" },
         h("h2", { text: "写真（8枚）" }),
-        h("p", { class: "card-note", text: "「写真を変える」を押して差し替えます。番号はサイトでの並び順（左上→下→右へ）です。" }),
+        h("p", { class: "card-note", text: "動画が設定されていないときに表示されます。「写真を変える」を押して差し替えます。番号はサイトでの並び順（左上→下→右へ）です。" }),
         h("div", { class: "gallery-grid" }, items.slice(0, 8).map((g, i) =>
           h("div", { class: "gallery-slot" },
             h("h3", { text: `${i + 1}枚目` }),
@@ -723,6 +724,47 @@
             renderField(S.text("alt", "写真の説明（任意）", "例：BBQで乾杯する様子"), ["gallery", i])
           ))))
     ];
+  }
+
+  // ギャラリーの動画（YouTube / Instagram のURL）
+  function renderGalleryVideo() {
+    const path = ["home", "galleryVideo"];
+    const id = "f" + (++uid);
+    const status = h("p", { class: "video-status", "aria-live": "polite" });
+    const preview = h("div", { class: "video-preview" });
+    let last = null;
+    const update = (url) => {
+      const v = window.LSF_VIDEO ? window.LSF_VIDEO.parse(url) : null;
+      if (!String(url || "").trim()) {
+        status.className = "video-status";
+        status.textContent = "動画は設定されていません（今は下の8枚の写真が表示されます）。";
+      } else if (!v) {
+        status.className = "video-status is-error";
+        status.textContent = "このURLは使えません。YouTubeかInstagramの動画のURLを貼ってください。";
+      } else {
+        status.className = "video-status is-ok";
+        status.textContent = `${v.label}として表示されます（写真の代わりに表示）。最後に「保存する」を押してください。`;
+      }
+      // 見本の再生画面（URLが変わったときだけ作り直す）
+      const src = v ? v.src : null;
+      if (src === last) return;
+      last = src;
+      preview.className = "video-preview" + (v && v.vertical ? " is-vertical" : "");
+      preview.replaceChildren(...(v ? [h("iframe", { src, title: "動画の見本", allow: "autoplay; encrypted-media; picture-in-picture; fullscreen", allowfullscreen: true })] : []));
+    };
+    const input = h("input", {
+      id, type: "url", inputmode: "url", value: getAt(path) || "", placeholder: "https://www.youtube.com/watch?v=…",
+      "aria-describedby": id + "-help",
+      oninput: (e) => { setAt(path, e.target.value.trim()); update(e.target.value); }
+    });
+    update(input.value);
+    return h("section", { class: "card", "data-key": "home.galleryVideo" },
+      h("h2", { text: "動画（1本）" }),
+      h("div", { class: "field" },
+        h("label", { for: id, text: "動画のURL" }),
+        h("p", { class: "field-help", id: id + "-help", text: "YouTube（普通の動画・ショート動画・限定公開もOK）か、Instagramのリール・投稿のURLを貼ります。サイトでは音なしで自動再生されます。動画をやめて写真に戻すときは、この欄を空にして保存します。" }),
+        input, status),
+      preview);
   }
 
   function renderScreen(keepScroll) {

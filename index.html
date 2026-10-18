@@ -196,7 +196,9 @@
         <p class="split-text" data-cms="home.galleryText">イベントの様子や、<br>参加者の笑顔を写真でご紹介します。</p>
         <a href="https://www.instagram.com/life_shift_fukuoka/" data-cms-href="settings.instagramUrl" target="_blank" rel="noopener" class="btn btn-gold btn-wide">Instagramで活動を見る <span class="arrow">→</span></a>
       </div>
-      <!-- 写真は assets/images/gallery/gallery-01.jpg 〜 gallery-08.jpg を差し替えてください -->
+      <!-- 動画：管理画面「ギャラリー」で YouTube / Instagram のURLを入れると、下の写真の代わりに表示されます -->
+      <div class="gallery-video" data-cms-video="home.galleryVideo" hidden></div>
+      <!-- 写真（動画が設定されていないときに表示） -->
       <ul class="gallery-grid" data-cms-list="gallery">
         <li><img src="assets/images/gallery/gallery-01.jpg" alt="ギャラリー写真1" loading="lazy"></li>
         <li><img src="assets/images/gallery/gallery-02.jpg" alt="ギャラリー写真2" loading="lazy"></li>
@@ -283,6 +285,7 @@
   </footer>
 
   <script src="js/fonts.js"></script>
+  <script src="js/video.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

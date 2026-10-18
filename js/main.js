@@ -176,6 +176,22 @@
       const v = get(content, el.dataset.cmsHref);
       if (v) el.href = v;
     });
+    // 動画：URLが読み取れたら再生画面を表示し、同じ場所の写真は隠す
+    document.querySelectorAll("[data-cms-video]").forEach((el) => {
+      const video = window.LSF_VIDEO && window.LSF_VIDEO.parse(get(content, el.dataset.cmsVideo));
+      const photos = el.parentElement.querySelector(".gallery-grid");
+      if (!video) { el.hidden = true; el.replaceChildren(); if (photos) photos.hidden = false; return; }
+      const frame = document.createElement("iframe");
+      frame.src = video.src;
+      frame.title = "Life Shift FUK の活動動画";
+      frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      frame.allowFullscreen = true;
+      frame.loading = "lazy";
+      el.className = `gallery-video gallery-video--${video.type}` + (video.vertical ? " is-vertical" : "");
+      el.replaceChildren(frame);
+      el.hidden = false;
+      if (photos) photos.hidden = true;
+    });
     document.querySelectorAll("[data-cms-list]").forEach((el) => {
       const [type, path] = el.dataset.cmsList.split(":");
       const items = get(content, path || type);
