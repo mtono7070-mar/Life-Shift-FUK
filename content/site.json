@@ -365,6 +365,21 @@
       "fee": "3,000円",
       "capacity": "",
       "description": ""
+    },
+    {
+      "id": "ev-mvqmeaqf",
+      "date": "2026-11-21",
+      "title": "たこ焼きパーティー",
+      "tags": [
+        "交流",
+        "グルメ"
+      ],
+      "image": "assets/uploads/20261027-1332c57c.jpg",
+      "time": "20:00〜22:00",
+      "place": "天神エリア(詳細は予約後にご案内します)",
+      "fee": "3,000円",
+      "capacity": "",
+      "description": ""
     }
   ],
   "gallery": [
