@@ -353,13 +353,16 @@
     },
     {
       "id": "ev-mvnn51zj",
-      "date": "2026-11-08",
-      "title": "新しいイベント",
-      "tags": [],
-      "image": "assets/images/events/bbq.jpg",
-      "time": "",
-      "place": "",
-      "fee": "",
+      "date": "2026-11-03",
+      "title": "たこ焼きパーティー",
+      "tags": [
+        "交流",
+        "グルメ"
+      ],
+      "image": "assets/uploads/20261027-1332c57c.jpg",
+      "time": "19:00〜21:00",
+      "place": "天神エリア(詳細は予約後にご案内します)",
+      "fee": "3,000円",
       "capacity": "",
       "description": ""
     }
